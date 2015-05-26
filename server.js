@@ -3,8 +3,10 @@ var express = require("express"),
     bodyParser = require('body-parser'),
     errorHandler = require('errorhandler'),
     methodOverride = require('method-override'),
-    hostname = process.env.HOSTNAME || 'localhost',
-    port = parseInt(process.env.PORT, 10);
+    hostname = process.env.HOSTNAME || 'localhost';
+    //port = parseInt(process.env.PORT, 10);
+
+app.set('port', (process.env.PORT || 5000));
 
 app.get("/", function (req, res) {
   res.redirect("/index.html");
@@ -71,5 +73,5 @@ app.use(errorHandler({
   showStack: true
 }));
 
-console.log("Simple static server listening at http://" + hostname + ":" + port);
-app.listen(port, hostname);
+console.log("Simple static server listening at http://" + hostname + ":" + app.get('port'));
+app.listen(app.get('port'), hostname);
