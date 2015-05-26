@@ -38,3 +38,45 @@
 .jumbotron{
   margin-top: 50px;
 }
+
+.project-image
+{
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-bottom: 5px;
+  max-width: 100%;
+  box-shadow: 0px 5px 5px #888888;
+  border: 2px solid transparent;
+  /*border-image: url(border3.png) 30 30 round;*/
+}
+
+.blockline
+{
+  border: 1px solid rgba(170,170,170,0.5);
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+.navlink
+{
+  transition: color 0.2s ease-out;
+}
+
+.project-container
+{
+  /*border-image: url(BorderDesign.png) 35 35 round;*/
+  -webkit-border-image: url(border.png) 30 30 round; /* Safari 3.1-5 */
+    -o-border-image: url(border.png) 30 30 round; /* Opera 11-12.1 */
+    border: 10px solid transparent;
+  border-image: url(border2.png) 30 30 round;
+  padding-bottom: 10px;
+  background-color: rgb(245,245,245);
+  box-shadow: 0px 5px 5px #888888;
+  margin: 10px;
+}
+
+.center
+{
+  text-align: center;
+}

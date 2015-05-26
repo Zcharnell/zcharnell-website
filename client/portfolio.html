@@ -1,0 +1,229 @@
+
+<html>
+<head>
+
+	<link href="style.css" rel="stylesheet" />
+	<script src="md5.js"></script>
+	<script src="jquery-1.11.0.min.js"></script>
+	<script src="lightbox.min.js"></script>
+	<link href="lightbox.css" rel="stylesheet" />
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.min.css">
+	<script src="bootstrap.min.js"></script>
+
+	<script>
+	function getXMLHTTPRequest()
+	{
+	    var request;
+	    // Lets try using ActiveX to instantiate the XMLHttpRequest object
+	    try{
+	        request = new ActiveXObject("Microsoft.XMLHTTP");
+	    }catch(ex1){
+	        try{
+	            request = new ActiveXObject("Msxml2.XMLHTTP");
+	        }catch(ex2){
+	            request = null;
+	        }
+	    }
+	    // If the previous didn't work, lets check if the browser natively support XMLHttpRequest
+	    if(!request && typeof XMLHttpRequest != "undefined"){
+	        //The browser does, so lets instantiate the object
+	        request = new XMLHttpRequest();
+	    }
+	    return request;
+	}
+   function loadURL(url, callback)
+   {
+       var aXMLHttpRequest = getXMLHTTPRequest();
+       var allData;
+       if (aXMLHttpRequest){
+           aXMLHttpRequest.open("GET", url, true);
+           aXMLHttpRequest.onreadystatechange = function (aEvt) {
+   				if(aXMLHttpRequest.readyState == 4){
+ 				   allData = aXMLHttpRequest.responseText;
+				   callback(allData)
+			   }
+        };
+        //Lets fire off the request
+           aXMLHttpRequest.send(null);
+       }
+       else
+       {
+           //Oh no, the XMLHttpRequest object couldn't be instantiated.
+           alert("A problem occurred instantiating the XMLHttpRequest object.");
+       }
+   }
+	var allPhotos;
+	function list(photosToShow)
+	{
+		var url = "./listphotos";
+		 url = url + "?collection=" + 'ame494unsplash';
+	   var callback = function(data){
+		   var list = JSON.parse(data);
+		   allPhotos = list;
+		   var output = "";
+		   if(photosToShow == 'no photos to show') {
+		   	output += "<div id=title><h2>No photos to show for that search</h2></div>";
+		   }
+		   else {
+			   for(var i=0; i < list.length; i++){
+			   	if(!photosToShow || (photosToShow == 'user' && list[i].user == userID) || list[i].name.toLowerCase() == photosToShow || list[i].tags.indexOf(photosToShow.toLowerCase()) >= 0) {
+				   output = output + "<div id=title><h2>" + list[i].name + "</h2></div>";
+						output = output +"<div class='image'>"+"<a class = 'thumbnail' href=" + list[i].url + " data-lightbox ='user' target = '_blank'>" + "<img id='test' class='img-rounded' src='" + list[i].url +
+						"'>" + "</a>"+"</div>" + "<br>";
+						//output = output + "<a href='javascript:editTags(" + i + ")' id='tags' class='btn btn-default'>" + "Tags</a>";
+						if(list[i].tags.length > 0){
+							output = output + "<p>";
+							for(var j=0; j<list[i].tags.length; j++){
+								output = output + "[" + list[i].tags[j] + "]" + "&nbsp";
+							}
+							output = output + "</p>";
+						}
+						output = output + "<hr>";
+						}
+			   }
+		 	}
+		   document.getElementById("photolist").innerHTML = output;
+	   }
+	   loadURL(url, callback);
+	}
+
+	function searchTags() {
+	  var tagToSearch = document.getElementById("searchText").value.toLowerCase();;
+	  var match;
+   	for (var i=0; i < allPhotos.length; i++) {
+			//console.log(i);
+			//console.log(tagToSearch);
+			//console.log('NAME: ' + allPhotos[i].name.indexOf(tagToSearch));
+			var name = allPhotos[i].name.toLowerCase();
+   		if (allPhotos[i].tags.indexOf(tagToSearch) >= 0) {
+			//console.log('Working!');
+   			//alert(allPhotos[i].tags);
+   			match = allPhotos[i]; //Store all objects that match into this variable
+   		}
+   		else if (name.indexOf(tagToSearch) >= 0) {
+			//console.log(allPhotos[i].name.indexOf(tagToSearch));
+   			//alert(allPhotos[i].name);
+   			match = allPhotos[i]; //Store all objects that match into this variable
+   		}
+			if(match) {
+				list(tagToSearch);
+				return; //Returns all the tags that matched
+			}
+   	}
+   	list('no photos to show');
+   	return null;
+  }
+
+	</script>
+</head>
+<body>
+	<div style='display:block' id='postlogin'>
+	<!-- Navbar -->
+		
+		
+			<nav class='navbar navbar-inverse navbarBackground navbar-fixed-top'>
+				<div class="navbar-header">
+		        <a class="navbar-brand navlink" href="index.html">Zachary Charnell</a>
+		    </div>
+				<ul class='nav navbar-nav'>
+					<li><a href="index.html" class='navlink'>Home</a></li>
+					<li class='active'><a href="portfolio.html" class='navlink'>Portfolio</a></li>
+				</ul>
+			</nav>
+
+
+	
+
+
+		<div class="container">
+		    <div class="jumbotron text-center">
+				<h1 id='header'> Zachary Charnell </h1>
+				<h4 id='header'> Front-End Web Programmer </h4>
+			</div>
+		</div>
+
+		<h1 class='center col-md-12'>Virtual Arena</h1>
+		<div class='col-md-6'>
+			<a href='/img/VirtArenaScreenshot.jpg'><img src='/img/VirtArenaScreenshot.jpg' class='project-image'></a><br>
+		</div>
+		<div class='col-md-6'>
+			<a href='/img/VirtArenaScreenshot2.jpg'><img src='/img/VirtArenaScreenshot2.jpg' class='project-image'></a><br>
+		</div>
+		<div class='col-md-3'></div>
+		<div class='col-md-6 project-container'>
+			<p><b class='largefont'>Virtual Arena</b><br>
+				Personal Project<br></p><br>
+				<p><b>Role</b> <br>UI Designer, Programmer</p>
+				<p><b>Tools</b> <br>HTML, CSS, Javascript, jQuery, Photoshop</p>
+				<p><b>Timeline</b> <br>April 2014 - August 2014<br></p><br>
+			<p>Notes:</p>
+			<ul>
+				<li>Board game ported to HTML, requiring a graphical user interface for player interaction and feedback.</li>
+							<li>Focused on the technical development of a game, including artificial intelligence, pathfinding, graphic rendering, and interactivity.</li>
+				<li>Great learning experience for UI, player feedback design, and programming.</li>
+			</ul>
+		</div>
+		<div class='col-md-3'></div>
+
+
+		<div class='blockline col-md-12'></div>
+
+		<h1 class='center col-md-12'>Warring States</h1>
+		<div class='col-md-6'>
+			<a href='/img/Iberia.jpg'><img src='/img/Iberia.jpg' class='project-image'></a><br>
+		</div>
+		<div class='col-md-6'>
+			<a href='/image/EastAsia.jpg'><img src='/img/EastAsia.jpg' class='project-image'></a><br>
+		</div>
+		<div class='col-md-3'></div>
+		<div class='col-md-6 project-container'>
+			<p><b class='largefont'>Warring States</b><br>
+				Mod, Europa Universalis IV<br>
+				<a href='http://steamcommunity.com/sharedfiles/filedetails/?id=185238907' class='center'>Steam Workshop Page</a><br>
+				<a href='https://www.youtube.com/watch?v=nB7RYEVuku4' class='center'>Youtube Highlight by Shenryyr</a><br>
+				</p><br>
+				<p><b>Role</b> <br>Team Leader, Map & Event Designer, Programmer</p>
+				<p><b>Tools</b> <br>Scripting, Photoshop<br></p>
+				<p><b>Timeline</b> <br>August 2013 - December 2014</p>
+				<p><b>Stats</b> <br>13,500+ Subscribers<br>
+				12th All-Time Most Popular Mod</p><br>
+			<p>Notes:</p>
+			<ul>
+				<li>Placed an emphasis on creating unique and challenging gameplay situations inspired by a variety of historical eras.</li>
+				<li>Created dynamic political landscapes in which a wide variety of claimants could reasonably become great powers.</li>
+				<li>Enhanced the political system including a greater variety and significance of government types, dynastic takeovers, assassination, and a more nuanced approach to vassals.</li>
+			</ul>
+		</div>
+		<div class='col-md-3'></div>
+
+
+		<div class='blockline col-md-12'></div>
+				
+		<div class='col-md-3'></div>
+		<div class='col-md-6 project-container'>
+			<p class='center'><b class='largefont'>Company of Heroes 2 Prima Official eGuide</b><br>
+				Game Guide<br></p><br>
+				<p><b>Role</b> <br>Writer, Campaign & Theater of War</p>
+				<p><b>Tools</b> <br>Word, Photoshop</p>
+				<p><b>Timeline</b> <br>May 2013 - July 2013</p><br>
+			<p>Notes:</p>
+			<ul>
+				<li>Chosen to write for the guide due to positive community reputation, player skill, and previous guide-writing experience.</li>
+				<li>Focused on user experience and player mentality with an emphasis on clarity and cohesion in my writing.</li>
+				<li>Collaborated with an editor and web developer during the product cycle.</li>
+			</ul>
+		</div>
+		<div class='col-md-3'></div>
+
+
+
+
+
+
+
+	</div>
+
+</body>
+</html>
