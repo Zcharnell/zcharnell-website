@@ -48,10 +48,12 @@
 		  </div>
 		<ul class='nav navbar-nav'>
 			<li><a href="index.html" class='navlink'>Home</a></li>
-			<li class="dropdown">
-        <a href="portfolio.html" class="dropdown-toggle navlink" data-toggle="dropdown" role="button" aria-expanded="false">Portfolio<span class="caret"></span></a>
+			<li class='active'><a href="visualizer.html" class='navlink'>Music Visualizer</a></li>
+      <li><a href="unsplash.html" class='navlink'>Photo Uploader</a></li>
+      <li class="dropdown">
+        <a href="portfolio.html" class="dropdown-toggle navlink" data-toggle="dropdown" role="button" aria-expanded="false">Games<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
-          <li><a href="portfolio.html">All Projects</a></li>
+          <li><a href="portfolio.html">All Games</a></li>
           <li class="divider"></li>
           <li><a href="portfolio.html#virt-arena">Virtual Arena</a></li>
           <li><a href="portfolio.html#warring-states">Warring States</a></li>
@@ -59,38 +61,34 @@
           <li><a href="portfolio.html#coh2-guide">Prima eGuide</a></li>
         </ul>
       </li>
-      <li><a href="unsplash.html" class='navlink'>Unsplash</a></li>
-      <li class='active'><a href="visualizer.html" class='navlink'>Music Visualizer</a></li>
 		</ul>
 	</nav>
 
 	<br><br><br>
 	<div class="experiment" id="visWindow">
-		<p><span class='big'>Audio Visualizer</span> - Zachary Charnell</p>
-		<input type='file' id='fileUpload' onChange='changeAudio()'>
-		<br>
+		<p><span class='big'>Music Visualizer</span> - (Try running with Google Chrome)</p>
+		<p>Color Display
 		<select id='colorSelect' onChange='changeColor()'>
 			<option value="default">Default</option>
+		  <option value="electronic">Electronic</option>
+		  <option value="relaxing">Relaxing</option>
 		  <option value="pop">Pop</option>
 		  <option value="rock">Rock</option>
-		  <option value="relaxing">Relaxing</option>
-		  <option value="electronic">Electronic</option>
-		  <option value="classical">Classical</option>
-		</select>
+		</select></p>
+		<button type='button' onClick="changeAudio('pop.mp3')">Maroon 5 (Pop)</button>
+		<button type='button' onClick="changeAudio('rock.mp3')">Before I Die (Rock)</button>
+		<button type='button' onClick="changeAudio('relaxing.mp3')">Enya (Relaxing)</button>
+		<button id='startstop' class='glyphicon glyphicon-play' onClick='startAudio()'></button>
+		<!--<input type='file' id='fileUpload' onChange='changeAudio()'>-->
+		<br>
 
-		<select id='fftSize' onChange='changeFFTSize()'>
-		  <option value="256">256</option>
-		  <option value="128">128</option>
-		  <option value="64">64</option>
-		  <option value="32">32</option>
-		</select>
-		<div class="initiator"></div>
+		<div id='initiator' class="initiator"></div>
 		<div id="bars" class="area"></div>
 	</div>
 	<audio id='audioIn' src='pop.mp3'></audio>
 
 	<script type="text/javascript">
-		var barColor = 'linear-gradient(black, rgb(50,50,50))';
+		var barColor = 'linear-gradient(rgb(0,0,0), rgb(200,200,200))';
 		var globalFFTSize = 256;
 		var vis = document.querySelectorAll('.initiator');
 		var visual = null;
@@ -157,6 +155,27 @@
 			})()
 		}
 
+		function startAudio(){
+			var visWindow = vis[0];
+			var id = visWindow.parentNode.id;
+
+			if (!visual) {
+				visual = new Visualization({renderer: renderers[id] });
+			}
+			visual.setRenderer(renderers[id]);
+			if (visual.isPlaying()) {
+				visual.stop();
+				visWindow.style.backgroundColor = 'rgba(255,255,255,0.5)';
+				document.getElementById('startstop').className = 'glyphicon glyphicon-play'
+			} else {
+				visual.start();
+				visWindow.style.backgroundColor = 'rgba(0,0,0,0)';
+				document.getElementById('startstop').className = 'glyphicon glyphicon-pause'
+			}
+			lastVisWindowParentId = id;
+			lastVisWindow = visWindow;
+		}
+
 		function Visualization(config) {
 			var audio,
 				audioStream,
@@ -167,8 +186,12 @@
 				frequencyData,
 				running = false,
 				renderer = config.renderer,
-				width = config.width || 1200,
-				height = config.height || 600;
+				rect = document.getElementById('initiator').getBoundingClientRect(),
+				width = window.innerWidth-rect.top,
+				height = window.innerHeight-rect.top;
+
+				//width = config.width || 1200,
+				//height = config.height || 600;
 
 			var init = function() {
 				audio = document.getElementById('audioIn');
@@ -228,21 +251,16 @@
 			globalFFTSize = parseInt(document.getElementById('fftSize').value);
 		}
 
-		function changeAudio() {
+		function changeAudio(audioSrc) {
 			if(visual) {
 				visual.stop();
-				document.getElementById('audioIn').src = document.getElementById('fileUpload').files[0].name;
 			}
-			console.log(document.getElementById('colorSelect').value);
-			console.log(document.getElementById('fileUpload').files[0].name);
-			document.getElementById('fileUpload').value = '';
+			document.getElementById('audioIn').src = audioSrc;
+			document.getElementById('startstop').className = 'glyphicon glyphicon-play'
 		}
 
 		function changeColor() {
 			switch(document.getElementById('colorSelect').value) {
-				case 'default':
-					barColor = 'linear-gradient(black, rgb(50,50,50))';
-					break;
 				case 'pop':
 					barColor = 'linear-gradient(rgb(238,114,252), rgb(142,152,204))';
 					break;
@@ -255,13 +273,23 @@
 				case 'electronic':
 					barColor = 'linear-gradient(red, blue)';
 					break;
-				case 'classical':
+				case 'default':
 					barColor = 'linear-gradient(rgb(0,0,0), rgb(200,200,200))';
 					break;
 			}
 		}
 
 		window.onload = function() {
+			var rect = document.getElementById('initiator').getBoundingClientRect();
+			console.log(rect.top, rect.right, rect.bottom, rect.left);
+			document.getElementById('initiator').style.width = window.innerWidth;
+			console.log(window.innerWidth);
+			document.getElementById('initiator').style.height = window.innerHeight-rect.top;
+			console.log(window.innerHeight-rect.top);
+			document.getElementById('bars').style.width = window.innerWidth;
+			console.log(window.innerWidth);
+			document.getElementById('bars').style.height = window.innerHeight-rect.top;
+
 			for(var i=0; i<vis.length; i++) {
 				vis[i].onclick = (function() {
 
