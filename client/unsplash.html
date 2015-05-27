@@ -69,13 +69,13 @@ function addNew()
 
       var t = filename.substring(filename.length-3, filename.length).toLowerCase();
       if(['png', 'jpg', 'gif'].indexOf(t) == -1){
-          alert("Incorrect File -- Please upload an image");
+          alert("Incorrect File -- Please upload .png, .jpg, or .gif");
           document.getElementById("fileUpload").value = "";
           return;
       }
 
       if(document.getElementById('photoName').value == ""){
-          alert("Invalid Name -- Please enter a name for the photo");
+          alert("Please enter a name for the photo");
           document.getElementById("photoName").value = "";
           return;
       }
@@ -102,7 +102,7 @@ function addNew()
 		  name: document.getElementById('photoName').value,
 		  tags: checkboxTags,
 		  user: userID,
-		  url: "https://s3.amazonaws.com/portfolio-unsplash/" + fileInput
+		  url: "https://portfolio-unsplash.s3.amazonaws.com/" + fileInput
 	  }
 
       fd.append('fordb', encodeURIComponent(JSON.stringify(fordb)));
@@ -112,7 +112,11 @@ function addNew()
           document.getElementById("fileUpload").value = "";
           document.getElementById('photoName').value = "";
           if (xhr.readyState != 4) { return; }
-		  updateList();
+				  updateList();
+				  document.getElementById('uploadButton').innerHTML = 'Uploaded!';
+		      setTimeout(function(){
+		      	document.getElementById('uploadButton').innerHTML = 'Upload Photo';
+		      },2000);
       };
       xhr.open("POST", "/uploadFile", true);
       xhr.send(fd);
@@ -121,6 +125,7 @@ function addNew()
 
 
    var allPhotos;
+   var numPhotos = 0;
    function updateList(photosToShow)
    {
 	   var url = "./listphotos";
@@ -128,7 +133,18 @@ function addNew()
 	   var callback = function(data){
 		   var list = JSON.parse(data);
 		   allPhotos = list;
+		   if(list.length > 20){ 
+		   	deletePhoto(0);
+		   	numPhotos = 0;
+		   	updateList();
+		   	return;
+		   }
 		   var output = "";
+		   var numResults = 0;
+		   list.sort(function(a,b){
+		   	if(a.date > b.date) return -1;
+		   	else return 1;
+		   });
 		   if(photosToShow == 'no photos to show') {
 		   	output += "<div id=title><h2>No photos to show for that search</h2></div>";
 		   }
@@ -136,17 +152,20 @@ function addNew()
 			   for(var i=0; i < list.length; i++){
 			   	console.log('NAME ' + i + ": " + list[i].name);
 			   	if(!photosToShow || (photosToShow == 'user' && list[i].user == userID) || list[i].name.toLowerCase() == photosToShow || list[i].tags.indexOf(photosToShow.toLowerCase()) >= 0) {
+			   		numResults++
 				   output = output + "<div id=title><h2>" + list[i].name + "</h2></div>";
 					 output = output +"<div class='image'>"+"<a class = 'thumbnail' href=" + list[i].url + " data-lightbox ='user' target = '_blank'>" + "<img id='test' class='img-rounded' src='" + list[i].url +
 				  	"'>" + "</a>"+"</div>" + "<br>";
-				   if(list[i].user == userID) output = output + "<a href='javascript:renamePhoto(" + i + ")' id='rename' class='btn btn-default'>" + "Rename</a>";
-				   if(list[i].user == userID) output = output + "<a href='javascript:deletePhoto(" + i + ")' id='delete' class='btn btn-default'>" + "Delete</a>";
+				  	console.log('url: ' + list[i].url);
+				   //if(list[i].user == userID) output = output + "<a href='javascript:renamePhoto(" + i + ")' id='rename' class='btn btn-default'>" + "Rename</a>";
+				   //if(list[i].user == userID) output = output + "<a href='javascript:deletePhoto(" + i + ")' id='delete' class='btn btn-default'>" + "Delete</a>";
 				   //output = output + "<a href='javascript:editTags(" + i + ")' id='tags' class='btn btn-default'>" + "Tags</a>";
 				   if(list[i].tags.length > 0){
-				   	output = output + "<p>";
+				   	output = output + "<p>Tags: ";
 
 				   	for(var j=0; j<list[i].tags.length; j++){
-				   		output = output + "[" + list[i].tags[j] + "]" + "&nbsp";
+				   		output = output + list[i].tags[j];
+				   		if(j+1 != list[i].tags.length) output += ", ";
 				   	}
 
 				   	output = output + "</p>";
@@ -155,7 +174,18 @@ function addNew()
 				 	}
 			   }
 			 }
+			 var numResultsString = numResults;
+			 if(numResults != 1) numResultsString += ' Results';
+			 else numResultsString += ' Result';
+			 document.getElementById('numResults').innerHTML = numResultsString;
 			 document.getElementById("list").innerHTML = output;
+			 if(numPhotos != list.length){
+					numPhotos = list.length;
+					console.log('Update num photos: ' + numPhotos);
+					setTimeout(function(){
+						updateList();
+					},1000);
+			 }
 	   }
 	   loadURL(url, callback);
    }
@@ -291,7 +321,58 @@ function addNew()
    	return null;
   }
 
-	</script>
+  function upload_file(file, signed_request, url){
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("PUT", signed_request);
+	    xhr.setRequestHeader('x-amz-acl', 'public-read');
+	    xhr.onload = function() {
+	        if (xhr.status === 200) {
+	            document.getElementById("preview").src = url;            
+	            document.getElementById("avatar_url").value = url;
+	        }
+	    };
+	    xhr.onerror = function() {
+	        alert("Could not upload file."); 
+	    };
+	    xhr.send(file);
+	}
+	/*
+	    Function to get the temporary signed request from the app.
+	    If request successful, continue to upload the file using this signed
+	    request.
+	*/
+	function get_signed_request(file){
+	    var xhr = new XMLHttpRequest();
+	    xhr.open("GET", "/sign_s3?file_name="+file.name+"&file_type="+file.type);
+	    xhr.onreadystatechange = function(){
+	        if(xhr.readyState === 4){
+	        	console.log('State: ' + xhr.readyState + 'Status: ' + xhr.status);
+	            if(xhr.status === 200){
+	                var response = JSON.parse(xhr.responseText);
+	                upload_file(file, response.signed_request, response.url);
+	            }
+	            else{
+	                alert("Could not get signed URL.");
+	            }
+	        }
+	    };
+	    xhr.send();
+	}
+	/*
+	   Function called when file input updated. If there is a file selected, then
+	   start upload procedure by asking for a signed request from the app.
+	*/
+	function init_upload(){
+	    console.log("here");
+	    var files = document.getElementById("file_input").files;
+	    var file = files[0];
+	    if(file == null){
+	        alert("No file selected.");
+	        return;
+	    }
+	    get_signed_request(file);
+	}
+
 	</script>
 </head>
 <body onload = 'updateList()'>
@@ -322,6 +403,7 @@ function addNew()
 		<div class="container">
 		    <div class="jumbotron text-center">
 				<h1 id='header'> Photo Uploader </h1>
+				<h4 id='header'> Javascript with MongoDB database and AWS S3 image hosting</h4>
 		    	<input style='margin-left: auto; margin-right: auto' type='file' id='fileUpload'>
 		    	<label for='photoName'>Photo name</label>
 			    <input type='text' id='photoName'>
@@ -332,18 +414,30 @@ function addNew()
 			    <input type="checkbox" name="category" id='selfieCheckbox' value="Selfie">Selfie
 			    <input type="checkbox" name="category" id='otherCheckbox' value="Other">Other
 			    <br>
-		    	<button onclick="addNew()">Upload Photo</button>
+		    	<button id='uploadButton' onclick="addNew()">Upload Photo</button>
 				<hr>
-				<!--<button onclick="updateList()">My Photos</button>
-				<button onclick="updateList()">All Photos</button>-->
+				<input type="text" id="searchText" placeholder="Search name or tag." name="q">
+		      <button onclick="searchTags()" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+		      <br><button onclick="updateList()">Show All Photos</button>
+		      <p id='numResults'></p>
+				<!--<button onclick="updateList()">My Photos</button>-->
 			</div>
 		</div>
 
 		<div id="list">
-			list is empty
+			No photos to show.
 		</div>
 
 	</div>
+
+<script>
+	/*
+	   Bind listeners when the page loads.
+	*/
+	/*(function() {
+	    document.getElementById("file_input").onchange = init_upload;
+	})();*/
+</script>
 
 </body>
 </html>
