@@ -7,7 +7,7 @@ var express = require('express'),
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/client'));
 
-var db = require('mongoskin').db('mongodb://user:password@localhost:27017/zcharnellphotos');
+var db = require('mongoskin').db('mongodb://heroku_app37223829:tolsu4ust0l7mhob7ahlon4v14@ds041032.mongolab.com:41032/heroku_app37223829/zcharnellphotos');
 console.log(db);
 
 
