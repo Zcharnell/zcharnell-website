@@ -45,8 +45,22 @@ function getXMLHTTPRequest()
 
 var userID = "zacharycharnell";
 
+var bannedWords = [
+	'penis',
+	'vagina',
+	'dick',
+	'gay',
+	'anal',
+	'porn',
+	'cock'
+];
+
 function addNew()
 {
+	if(!canUpload){
+		alert("Cannot upload.");
+		return;
+	}
       var fileObj = document.getElementById('fileUpload').files[0];
       var filename = fileObj.name;
       var size = fileObj.size;
@@ -63,6 +77,15 @@ function addNew()
           alert("Please enter a name for the photo");
           document.getElementById("photoName").value = "";
           return;
+      }
+
+      var nameInput = document.getElementById('photoName').value.toLowerCase();
+      for(var i in bannedWords){
+      	if(nameInput.indexOf(bannedWords[i]) > -1){
+          alert("That name is not allowed. You can no longer upload.");
+          document.getElementById("photoName").value = "";
+          return;
+      	}
       }
 
       var checkboxTags = [];
@@ -86,6 +109,7 @@ function addNew()
 		  date: new Date().getTime().toString(),
 		  name: document.getElementById('photoName').value,
 		  tags: checkboxTags,
+		  verified: false,
 		  user: userID,
 		  url: "https://portfolio-unsplash.s3.amazonaws.com/" + fileInput
 	  }
@@ -111,6 +135,7 @@ function addNew()
 
    var allPhotos;
    var numPhotos = 0;
+   var canUpload = true;
    function updateList(photosToShow)
    {
 	   var url = "./listphotos";
@@ -147,7 +172,8 @@ function addNew()
 
 			   		output = output + "<div class='col-md-4 text-center'>";
 				   output = output + "<h2 id='title'>" + list[i].name.capitalizeFirstLetter() + "</h2>";
-				   output += "<a href='" + list[i].url + "'data-lightbox ='user' target = '_blank'><img class='list-image' src='" + list[i].url + "'></a>"; 
+				   if(list[i].verified) output += "<a href='" + list[i].url + "'data-lightbox ='user' target = '_blank'><img class='list-image' src='" + list[i].url + "'></a>"; 
+				   else output += "<img class='list-image' src='img/verification.png'>";
 					 //output = output +"<div class='list-image'>"+"<a class='list-image' href=" + list[i].url + " data-lightbox ='user' target = '_blank'>" + "<img id='test' class='list-image' src='" + list[i].url + "'>" + "</a>"+"</div>" + "<br>";
 				  //console.log('url: ' + list[i].url);
 				   //if(list[i].user == userID) output = output + "<a href='javascript:renamePhoto(" + i + ")' id='rename' class='btn btn-default'>" + "Rename</a>";
@@ -193,6 +219,19 @@ function addNew()
 		  			 +"&collection=zcharnellphotos";
 	   var callback = function(data){
 		   if(data === "deleted"){
+			   updateList();
+		   }
+	   }
+
+	   loadURL(url, callback);
+   }
+
+   function verifyPhoto(i){
+	   var id = allPhotos[i].id;
+	   var url = "./verifyphoto?id=" + encodeURIComponent(id)
+		  			 +"&collection=zcharnellphotos";
+	   var callback = function(data){
+		   if(data === "verified"){
 			   updateList();
 		   }
 	   }

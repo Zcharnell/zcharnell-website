@@ -28,9 +28,25 @@ app.get("/renamephoto", function (req, res) {
     else{
       db.collection("data").insert(x, callback);
     }
-  });
-  
-  });
+  });  
+});
+
+app.get("/verifyphoto", function (req, res) {
+  var x = req.query;
+  var callback = function(error, result){
+    if(result)
+    {
+      res.end("verified");
+    }
+  }
+  db.collection("data").findOne({id: x.id}, function(err, result1) {
+    if(result1){
+      console.log(result1);
+      result1.verified = true;
+      db.collection("data").save(result1, callback);
+    }
+  });  
+});
 
 app.get("/deletephoto", function (req, res) {
   var index = req.query.id;
@@ -42,7 +58,6 @@ app.get("/deletephoto", function (req, res) {
   }
   db.collection("data").remove({"id": index.toString()}, callback);
 });
-
 
 app.get("/listphotos", function (req, res) {
   db.collection("data").find().toArray(function(err, result) {
