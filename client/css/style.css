@@ -36,7 +36,7 @@
 }
 
 .jumbotron{
-  margin-top: 50px;
+  margin-top: 10px;
 }
 
 .project-image
@@ -76,7 +76,57 @@
   margin: 10px;
 }
 
+.project-container-white
+{
+  /*border-image: url(BorderDesign.png) 35 35 round;*/
+  -webkit-border-image: url(border.png) 30 30 round; /* Safari 3.1-5 */
+    -o-border-image: url(border.png) 30 30 round; /* Opera 11-12.1 */
+    border: 2px solid transparent;
+  border-image: url(border2.png) 30 30 round;
+  padding-bottom: 10px;
+  
+  box-shadow: 0px 5px 5px #888888;
+  margin: 10px;
+}
+
 .center
 {
   text-align: center;
+}
+
+#list
+{
+  height: 750px;
+  overflow: scroll;
+}
+
+.area { 
+  position:relative;
+  width:800px; height:600px; 
+}
+.bar { 
+  position:absolute; bottom:0; 
+  background: -webkit-linear-gradient(red, white); 
+  background: -o-linear-gradient(red, white);
+  background: -moz-linear-gradient(red, white); 
+  background: linear-gradient(red, white); 
+  -webkit-transition:0.01s ease all;}
+.initiator {
+  position:absolute;
+  width:600px; height:600px; 
+  -webkit-transition:0.5s ease all;
+  z-index:10000;
+  cursor:pointer;
+}
+.experiment { 
+  position: block;
+  margin-left: auto; 
+  margin-right: auto;
+  }
+.big {
+  font-size: 22px;
+}
+
+#allgames {
+
 }
