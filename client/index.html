@@ -230,7 +230,7 @@ var barColor = 'linear-gradient(red, blue)';
 				rect = document.getElementById('initiator').getBoundingClientRect(),
 				width = window.innerWidth-(64*2),
 				height = 500;
-				console.log('width: ' + width);
+				//console.log('width: ' + width);
 				if(window.innerHeight < 500) height = window.innerHeight-rect.top;
 
 				//width = config.width || 1200,
@@ -240,13 +240,13 @@ var barColor = 'linear-gradient(red, blue)';
 				audio = document.getElementById('audioIn');
 				audioCtx = new AudioContext();
 				analyser = audioCtx.createAnalyser();
-				console.log('FrequencyBinCount: ' + analyser.frequencyBinCount);
-				console.log('Sample rate: ' +audioCtx.sampleRate + 'hz');
+				//console.log('FrequencyBinCount: ' + analyser.frequencyBinCount);
+				//console.log('Sample rate: ' +audioCtx.sampleRate + 'hz');
 				source =  audioCtx.createMediaElementSource(audio);
 				source.connect(analyser);
 				analyser.connect(audioCtx.destination);
 				analyser.fftSize = globalFFTSize;
-				console.log('FFT size: ' + analyser.fftSize);
+				//console.log('FFT size: ' + analyser.fftSize);
 				frequencyData = new Uint8Array(analyser.frequencyBinCount);
 				renderer.init({
 					count: analyser.frequencyBinCount,
@@ -258,7 +258,7 @@ var barColor = 'linear-gradient(red, blue)';
 				audio.play();
 				running = true;
 				renderFrame();
-				console.log('Start!');
+				//console.log('Start!');
 			};
 			this.stop = function() {
 				running = false;
@@ -324,13 +324,13 @@ var barColor = 'linear-gradient(red, blue)';
 
 window.onload = function() {
 		var rect = document.getElementById('bars').getBoundingClientRect();
-		console.log(rect.top, rect.right, rect.bottom, rect.left);
+		//console.log(rect.top, rect.right, rect.bottom, rect.left);
 		document.getElementById('initiator').style.width = window.innerWidth;
-		console.log(window.innerWidth);
+		//console.log(window.innerWidth);
 		document.getElementById('initiator').style.height = 500;
-		console.log(window.innerHeight-rect.top);
+		//console.log(window.innerHeight-rect.top);
 		document.getElementById('bars').style.width = window.innerWidth;
-		console.log(window.innerWidth);
+		//console.log(window.innerWidth);
 		document.getElementById('bars').style.height = 500;
 
 		for(var i=0; i<vis.length; i++) {
