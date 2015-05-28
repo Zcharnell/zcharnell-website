@@ -52,7 +52,9 @@ var bannedWords = [
 	'gay',
 	'anal',
 	'porn',
-	'cock'
+	'cock',
+	'bbc',
+	'sex'
 ];
 
 function addNew()
@@ -110,6 +112,7 @@ function addNew()
 		  name: document.getElementById('photoName').value,
 		  tags: checkboxTags,
 		  verified: false,
+		  showUnverified: false,
 		  user: userID,
 		  url: "https://portfolio-unsplash.s3.amazonaws.com/" + fileInput
 	  }
