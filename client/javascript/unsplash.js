@@ -229,7 +229,7 @@ function addNew()
 	   loadURL(url, callback);
    }
 
-   function verifyPhoto(i){
+   function pVerPhoto(i){
 	   var id = allPhotos[i].id;
 	   var url = "./verifyphoto?id=" + encodeURIComponent(id)
 		  			 +"&collection=zcharnellphotos";
