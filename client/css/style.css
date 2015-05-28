@@ -46,7 +46,7 @@
   margin-right: auto;
   margin-bottom: 5px;
   max-width: 100%;
-  box-shadow: 0px 3px 3px #888888;
+  box-shadow: 0px 3px 3px #9696be;
   border: 2px solid transparent;
   /*border-image: url(border3.png) 30 30 round;*/
 }
@@ -71,22 +71,9 @@
     border: 10px solid transparent;
   border-image: url(border2.png) 30 30 round;
   padding-bottom: 10px;
-  color: white;
+  color: rgb(210,210,250);
   background-color: rgba(20,20,30,0.5);
-  box-shadow: 0px 5px 5px #888888;
-  margin: 10px;
-}
-
-.project-container-white
-{
-  /*border-image: url(BorderDesign.png) 35 35 round;*/
-  -webkit-border-image: url(border.png) 30 30 round; /* Safari 3.1-5 */
-    -o-border-image: url(border.png) 30 30 round; /* Opera 11-12.1 */
-    border: 2px solid transparent;
-  border-image: url(border2.png) 30 30 round;
-  padding-bottom: 10px;
-  
-  box-shadow: 0px 5px 5px #888888;
+  box-shadow: 0px 3px 3px #9696be;
   margin: 10px;
 }
 
@@ -105,15 +92,16 @@
 }
 
 #name-image {
-  -webkit-text-fill-color: white; 
+  -webkit-text-fill-color: rgb(210,210,250); 
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: #151d4d;
   background-size: 100%;
-  color: black;
+  color: rgb(210,210,250);
   height: 250px;
   background-position: center;
   margin-top: 0px;
-  text-shadow: 5px 5px #000000;
+  text-shadow: 2px 2px #151d4d;
+  box-shadow: 0px 1px 1px #9696be;
 }
 
 .area { 
@@ -144,20 +132,22 @@
 }
 
 #allgames {
-  -webkit-text-fill-color: white; 
+  -webkit-text-fill-color: rgb(210,210,250); 
   -webkit-text-stroke-width: 1px;
-  -webkit-text-stroke-color: black;
+  -webkit-text-stroke-color: #151d4d;
   background-position: top;
   background-size: 100%;
-  color: white;
+  color: rgb(210,210,250);
+  box-shadow: 0px 2px 2px #9696be;
 }
 
 .visualizer{
   background-image: url('img/Milkdrop.jpg'); 
   padding-top: 1px; 
   padding-bottom: 20px;
-  color: white;
+  color: rgb(210,210,250);
   background-position: center;
+  box-shadow: 0px 3px 3px #9696be;
 }
 
 .list-image{
@@ -181,9 +171,9 @@
 
 #photouploader{
   padding-bottom: 10px;
-  box-shadow: 0px 5px 5px #888888;
+  box-shadow: 0px 2px 2px #9696be;
   margin: 10px;
-  color: white;
+  color: rgb(210,210,250);
 }
 
 .grid-image{
@@ -192,7 +182,7 @@
 
 #photo-uploader-image {
   background-position: left bottom;
-  box-shadow: 0px 2px 2px #888888;
+  box-shadow: 0px 2px 2px #9696be;
 }
 
 #visWindow{
