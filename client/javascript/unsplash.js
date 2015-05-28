@@ -136,7 +136,7 @@ function addNew()
 		   else {
 		   	output += '<table>'
 			   for(var i=0; i < list.length; i++){
-			   	console.log('NAME ' + i + ": " + list[i].name);
+			   	//console.log('NAME ' + i + ": " + list[i].name);
 			   	if(!photosToShow || (photosToShow == 'user' && list[i].user == userID) || list[i].name.toLowerCase() == photosToShow || list[i].tags.indexOf(photosToShow.toLowerCase()) >= 0) {
 			   		numResults++;
 			   		if(numResults%3 == 1){ 
@@ -178,7 +178,7 @@ function addNew()
 			 document.getElementById("list").innerHTML = output;
 			 if(numPhotos != list.length){
 					numPhotos = list.length;
-					console.log('Update num photos: ' + numPhotos);
+					//console.log('Update num photos: ' + numPhotos);
 					setTimeout(function(){
 						updateList();
 					},1000);
@@ -203,7 +203,7 @@ function addNew()
    function renamePhoto(i){
 	   var id = allPhotos[i].id;
 	   var newname = prompt("Rename photo", getPhotoName(id))
-	   console.log('NEWNAME: ' + newname);
+	   //console.log('NEWNAME: ' + newname);
 
 	   var url = "./renamephoto?id=" + encodeURIComponent(id)
 	   					+ "&name=" + encodeURIComponent(newname)
@@ -212,7 +212,7 @@ function addNew()
 
 	   var callback = function(data){
 		   if(data === "done"){
-		   	console.log('UPDATE LIST');
+		   	//console.log('UPDATE LIST');
 			   updateList();
 		   }
 	   }
@@ -343,7 +343,7 @@ function addNew()
 	    xhr.open("GET", "/sign_s3?file_name="+file.name+"&file_type="+file.type);
 	    xhr.onreadystatechange = function(){
 	        if(xhr.readyState === 4){
-	        	console.log('State: ' + xhr.readyState + 'Status: ' + xhr.status);
+	        	//console.log('State: ' + xhr.readyState + 'Status: ' + xhr.status);
 	            if(xhr.status === 200){
 	                var response = JSON.parse(xhr.responseText);
 	                upload_file(file, response.signed_request, response.url);
@@ -360,7 +360,7 @@ function addNew()
 	   start upload procedure by asking for a signed request from the app.
 	*/
 	function init_upload(){
-	    console.log("here");
+	    //console.log("here");
 	    var files = document.getElementById("file_input").files;
 	    var file = files[0];
 	    if(file == null){
