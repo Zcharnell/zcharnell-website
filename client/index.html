@@ -5,26 +5,25 @@
 
 	<script type='text/javascript' src='javascript/unsplash.js'></script>
 	<link href="css/style.css" rel="stylesheet" />
-	<script src="js/md5.js"></script>
-	<script src="js/jquery-1.11.0.min.js"></script>
-	<script src="js/lightbox.min.js"></script>
+	<script src="javascript/md5.js"></script>
+	<script src="javascript/jquery-1.11.0.min.js"></script>
+	<script src="javascript/lightbox.min.js"></script>
 	<link href="css/lightbox.css" rel="stylesheet" />
-	<script src="js/bootstrap.min.js"></script>
+	<script src="javascript/bootstrap.min.js"></script>
 	<link rel="stylesheet" href="css/bootstrap.min.css">
 
 </head>
-<body>
+<body style='background-color: rgb(245,245,245); background-image: url("img/bg.jpg"); background-repeat: repeat'>
 
-	<nav class='navbar navbar-inverse navbarBackground'>
+	<!--<nav class='navbar navbar-inverse navbarBackground'>
 		<div class="navbar-header">
 		      <a class="navbar-brand navlink" href="index.html">Zachary Charnell</a>
 		  </div>
 		<ul class='nav navbar-nav'>
-			<li class='active'><a href="index.html" class='navlink'>Home</a></li>
       <li><a href="index.html#photouploader" class='navlink'>Photo Uploader</a></li>
 			<li><a href="index.html#visWindow" class='navlink'>Music Visualizer</a></li>
       <li class="dropdown">
-        <a href="index.html" class="dropdown-toggle navlink" data-toggle="dropdown" role="button" aria-expanded="false">Games<span class="caret"></span></a>
+        <a class="dropdown-toggle navlink" data-toggle="dropdown" role="button" aria-expanded="false">Games<span class="caret"></span></a>
         <ul class="dropdown-menu" role="menu">
           <li><a href="index.html#allgames">All Games</a></li>
           <li class="divider"></li>
@@ -35,87 +34,88 @@
         </ul>
       </li>
 		</ul>
-	</nav>
+	</nav>-->
 
-	<div class="container">
-		   <div class="jumbotron text-center">
+		   <div class="jumbotron text-center" id='name-image' style='background-image: url("img/games.jpg")'>
 			<h1 id='header'> Zachary Charnell </h1>
-			<h4 id='header'> Front-End Web Programmer </h4>
+			<h3 id='header'> Front-End Web Developer </h3>
 		    <!--<a href=login.html>Login/Sign up</a>-->
 		</div>
-	</div>
 
 <div class='container'>
 	<div class='col-md-6'>
-		<h2 class='center'><a href='index.html#visualizer'>Music Visualizer</a></h2>
-		<a href='index.html#visualizer'><img src='/img/visualizer.jpg' class='project-image'></a><br>
+		<h2 class='visualizer-link center'><a style='cursor: pointer'>Music Visualizer</a></h2>
+		<a class='visualizer-link' style='cursor: pointer'><img src='/img/visualizer_red.png' class='project-image grid-image'></a><br>
 	</div>
 
 	<div class='col-md-6'>
-		<h2 class='center'><a href='index.html#virt-arena'>Virtual Arena</a></h2>
-		<a href='index.html#virt-arena'><img src='/img/VirtArenaScreenshot.jpg' class='project-image'></a><br>
+		<h2 class='center'><a class='virt-arena-link' style='cursor: pointer'>Virtual Arena</a></h2>
+		<a class='virt-arena-link' style='cursor: pointer'><img src='/img/VirtArenaScreenshot.jpg' class='project-image grid-image'></a><br>
 	</div>
 
 	<div class='col-md-6'>
-		<h2 class='center'><a href='index.html#photouploader'>Photo Uploader</a></h2>
-		<a href='index.html#photouploader'><img src='/img/photouploader.jpg' class='project-image'></a><br>
+		<h2 class='center'><a class='photo-uploader-link' style='cursor: pointer'>Photo Uploader</a></h2>
+		<a class='photo-uploader-link' style='cursor: pointer'><img src='/img/camera.jpg' class='project-image grid-image'></a><br>
 	</div>
 
 	<div class='col-md-6'>
-		<h2 class='center'><a href='index.html#warring-states'>Warring States</a></h2>
-		<a href='index.html#warring-states'><img src='/img/IberiaProject.jpg' class='project-image'></a><br>
+		<h2 class='center'><a class='warring-states-link' style='cursor: pointer'>Warring States</a></h2>
+		<a class='warring-states-link' style='cursor: pointer'><img src='/img/IberiaProject.jpg' class='project-image grid-image'></a><br>
 	</div>
 </div>
-<hr>
+<br>
 <div id='photouploader'>
-		    <div class="jumbotron text-center">
+		    <div class="jumbotron text-center" id="photo-uploader-image" style='background-image: url("img/station.jpg"); color:white'>
 				<h1 id='header'> Photo Uploader </h1>
 				<h4 id='header'> Javascript with MongoDB database and AWS S3 image hosting</h4>
 		    	<input style='margin-left: auto; margin-right: auto' type='file' id='fileUpload'>
 		    	<br>
-			    <input type='text' id='photoName' placeholder='Photo name'>
-			    <br>
+			    <input type='text' id='photoName' placeholder='Photo name' style='color: black'>
+			    <br><br>
 			    <input type="checkbox" name="category" id='landscapeCheckbox' value="Landscape">Landscape
 			    <input type="checkbox" name="category" id='foodCheckbox' value="Food">Food
 			    <input type="checkbox" name="category" id='animalsCheckbox' value="Animals">Animals
 			    <input type="checkbox" name="category" id='selfieCheckbox' value="Selfie">Selfie
 			    <input type="checkbox" name="category" id='otherCheckbox' value="Other">Other
-			    <br>
-		    	<button id='uploadButton' onclick="addNew()">Upload Photo</button>
-				<hr>
-				<input type="text" id="searchText" placeholder="Search name or tag." name="q">
-		      <button onclick="searchTags()" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
-		      <br><button onclick="updateList()">Show All Photos</button>
-		      <p id='numResults'></p>
+			    <br><br>
+		    	<button id='uploadButton' onclick="addNew()" style='color: black'>Upload Photo</button>
+				<br><br>
 				<!--<button onclick="updateList()">My Photos</button>-->
 			</div>
 
 		<div class='container'>
+			<div class='text-center'>
+				<input type="text" id="searchText" placeholder="Search name or tag." style='color: black' name="q">
+			  <button onclick="searchTags()" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+			  <br><button onclick="updateList()" style='color: black'>Show All Photos</button>
+			</div>
+			<br>
+			<p id='numResults'></p>
 			<div id="list"> 
 				No photos to show.
 			</div>
 		</div>
 </div>
 
-<hr>
+<br>
 
 
-<div class="experiment text-center" style="background-image: url('/img/visualizer.jpg')" id="visWindow">
-	<div style='background-color: rgb(225,225,225); padding-top: 1px; padding-bottom: 20px'>
+<div class="experiment text-center" style="background-image: url('/img/visualizer_red.png')" id="visWindow">
+	<div class='visualizer project-container' style="background-image: url('img/Milkdrop_Spikeball.jpg')">
 		<h1 class='center'>Music Visualizer</h1>
 		<p class='center'>(May not work on mobile; try Chrome on Desktop)</p>
 			<p>Color Display
 			<select style='margin-left: auto; margin-right: auto' id='colorSelect' onChange='changeColor()'>
 				<option value="default">Default</option>
-			  <option value="electronic">Electronic</option>
+			  <option value="electronic" selected>Electronic</option>
 			  <option value="relaxing">Relaxing</option>
 			  <option value="pop">Pop</option>
 			  <option value="rock">Rock</option>
 			</select></p>
-			<button type='button' onClick="changeAudio('pop.mp3')">Maroon 5 (Pop)</button>
-			<button type='button' onClick="changeAudio('rock.mp3')">Before I Die (Rock)</button>
-			<button type='button' onClick="changeAudio('relaxing.mp3')">Enya (Relaxing)</button>
-			<button id='startstop' class='glyphicon glyphicon-play' onClick='startAudio()'></button>
+			<button style='color: black' type='button' onClick="changeAudio('pop.mp3')">Maroon 5 (Pop)</button>
+			<button style='color: black' type='button' onClick="changeAudio('rock.mp3')">Before I Die (Rock)</button>
+			<button style='color: black' type='button' onClick="changeAudio('relaxing.mp3')">Enya (Relaxing)</button>
+			<button style='color: black' id='startstop' class='glyphicon glyphicon-play' onClick='startAudio()'></button>
 			<!--<input type='file' id='fileUpload' onChange='changeAudio()'>-->
 		</div>
 
@@ -126,7 +126,7 @@
 
 
 <script>
-var barColor = 'linear-gradient(rgb(0,0,0), rgb(200,200,200))';
+var barColor = 'linear-gradient(red, blue)';
 		var globalFFTSize = 256;
 		var vis = document.querySelectorAll('.initiator');
 		var visual = null;
@@ -204,16 +204,17 @@ var barColor = 'linear-gradient(rgb(0,0,0), rgb(200,200,200))';
 			visual.setRenderer(renderers[id]);
 			if (visual.isPlaying()) {
 				visual.stop();
-				visWindow.style.backgroundColor = 'rgba(255,255,255,0.5)';
+				//visWindow.style.backgroundColor = 'rgba(255,255,255,0.5)';
 				document.getElementById('startstop').className = 'glyphicon glyphicon-play'
+				document.getElementById('visWindow').style.background = "url('img/play_button.png') no-repeat center";
 			} else {
 				visual.start();
 				visWindow.style.backgroundColor = 'rgba(0,0,0,0)';
 				document.getElementById('startstop').className = 'glyphicon glyphicon-pause'
+				document.getElementById('visWindow').style.background = "rgba(0,0,0,0)";
 			}
 			lastVisWindowParentId = id;
 			lastVisWindow = visWindow;
-			document.getElementById('visWindow').style.background = "rgba(0,0,0,0)";
 		}
 
 		function Visualization(config) {
@@ -333,36 +334,60 @@ window.onload = function() {
 		document.getElementById('bars').style.height = 500;
 
 		for(var i=0; i<vis.length; i++) {
-			vis[i].onclick = (function() {
+				vis[i].onclick = (function() {
 
-				return function() {
-					var visWindow = this;
-					var id = visWindow.parentNode.id;
+					return function() {
+						var visWindow = this;
+						var id = visWindow.parentNode.id;
 
-						if (!visual) {
-							visual = new Visualization({renderer: renderers[id] });
-						}
-						visual.setRenderer(renderers[id]);
-						if (visual.isPlaying()) {
-							visual.stop();
-							visWindow.style.backgroundColor = 'rgba(255,255,255,0.5)';
-						} else {
-							visual.start();
-							visWindow.style.backgroundColor = 'rgba(0,0,0,0)';
-						}
-					lastVisWindowParentId = id;
-					lastVisWindow = visWindow;
-				};
-			})();
-		}
+							if (!visual) {
+								visual = new Visualization({renderer: renderers[id] });
+							}
+							visual.setRenderer(renderers[id]);
+							if (visual.isPlaying()) {
+								visual.stop();
+								//visWindow.style.backgroundColor = 'rgba(255,255,255,0.5)';
+								document.getElementById('visWindow').style.background = "url('img/play_button.png') no-repeat center";
+							} else {
+								visual.start();
+								visWindow.style.backgroundColor = 'rgba(0,0,0,0)';
+								document.getElementById('visWindow').style.background = "rgba(0,0,0,0)";
+							}
+						lastVisWindowParentId = id;
+						lastVisWindow = visWindow;
+					};
+				})();
+			}
+
 		updateList();
+
+		$(".visualizer-link").click(function() {
+	    $('html, body').animate({
+	        scrollTop: $("#visWindow").offset().top
+	    }, 2000);
+		});
+		$(".photo-uploader-link").click(function() {
+	    $('html, body').animate({
+	        scrollTop: $("#photouploader").offset().top
+	    }, 2000);
+		});
+		$(".virt-arena-link").click(function() {
+	    $('html, body').animate({
+	        scrollTop: $("#virt-arena").offset().top
+	    }, 2000);
+		});
+		$(".warring-states-link").click(function() {
+	    $('html, body').animate({
+	        scrollTop: $("#warring-states").offset().top
+	    }, 2000);
+		});
 	};
 </script>
 
-<h1 id='allgames' class='jumbotron text-center'>All Games</h1>
-<div id='virt-arena'></div><br><br>
+<h1 id='allgames' class='jumbotron text-center project-container' style='background-image: url("img/games.jpg")'>Games</h1>
+<div id='virt-arena'></div>
 
-	<h1 class='center col-md-12'>Virtual Arena</h1>
+	<h1 class='center col-md-12' style='color:white'>Virtual Arena</h1>
 	<div class='col-md-6'>
 		<a href='/img/VirtArenaScreenshot.jpg'><img src='/img/VirtArenaScreenshot.jpg' class='project-image'></a><br>
 	</div>
@@ -388,7 +413,7 @@ window.onload = function() {
 
 	<div class='blockline col-md-12' id='warring-states'></div>
 
-	<h1 class='center col-md-12'>Warring States</h1>
+	<h1 class='center col-md-12' style='color:white'>Warring States</h1>
 	<div class='col-md-6'>
 		<a href='/img/Iberia.jpg'><img src='/img/Iberia.jpg' class='project-image'></a><br>
 	</div>
@@ -405,7 +430,7 @@ window.onload = function() {
 			<p><b>Role</b> <br>Team Leader, Map & Event Designer, Programmer</p>
 			<p><b>Tools</b> <br>Scripting, Photoshop<br></p>
 			<p><b>Timeline</b> <br>August 2013 - Present</p>
-			<p><b>Stats</b> <br>13,500+ Subscribers<br>
+			<p><b>Stats</b> <br>14,000+ Subscribers<br>
 			12th All-Time Most Popular Mod</p><br>
 		<p>Notes:</p>
 		<ul>

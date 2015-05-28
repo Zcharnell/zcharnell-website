@@ -134,28 +134,40 @@ function addNew()
 		   	output += "<div id=title><h2>No photos to show for that search</h2></div>";
 		   }
 		   else {
+		   	output += '<table>'
 			   for(var i=0; i < list.length; i++){
 			   	console.log('NAME ' + i + ": " + list[i].name);
 			   	if(!photosToShow || (photosToShow == 'user' && list[i].user == userID) || list[i].name.toLowerCase() == photosToShow || list[i].tags.indexOf(photosToShow.toLowerCase()) >= 0) {
-			   		numResults++
-				   output = output + "<div id=title><h2>" + list[i].name + "</h2></div>";
-					 output = output +"<div class='image'>"+"<a class = 'thumbnail' href=" + list[i].url + " data-lightbox ='user' target = '_blank'>" + "<img id='test' class='img-rounded' src='" + list[i].url +
-				  	"'>" + "</a>"+"</div>" + "<br>";
-				  	console.log('url: ' + list[i].url);
+			   		numResults++;
+			   		if(numResults%3 == 1){ 
+			   			/*output = output + "<tr>";
+			   			console.log(i + ' ROW');*/
+			   			output += "<div class='row'>";
+			   		}
+
+			   		output = output + "<div class='col-md-4 text-center'>";
+				   output = output + "<h2 id='title'>" + list[i].name.capitalizeFirstLetter() + "</h2>";
+				   output += "<a href='" + list[i].url + "'data-lightbox ='user' target = '_blank'><img class='list-image' src='" + list[i].url + "'></a>"; 
+					 //output = output +"<div class='list-image'>"+"<a class='list-image' href=" + list[i].url + " data-lightbox ='user' target = '_blank'>" + "<img id='test' class='list-image' src='" + list[i].url + "'>" + "</a>"+"</div>" + "<br>";
+				  //console.log('url: ' + list[i].url);
 				   //if(list[i].user == userID) output = output + "<a href='javascript:renamePhoto(" + i + ")' id='rename' class='btn btn-default'>" + "Rename</a>";
 				   //if(list[i].user == userID) output = output + "<a href='javascript:deletePhoto(" + i + ")' id='delete' class='btn btn-default'>" + "Delete</a>";
 				   //output = output + "<a href='javascript:editTags(" + i + ")' id='tags' class='btn btn-default'>" + "Tags</a>";
 				   if(list[i].tags.length > 0){
-				   	output = output + "<p>Tags: ";
+				   	output = output + "<p>";
 
 				   	for(var j=0; j<list[i].tags.length; j++){
-				   		output = output + list[i].tags[j];
-				   		if(j+1 != list[i].tags.length) output += ", ";
+				   		output = output + '<span class="list-tag">' + list[i].tags[j].capitalizeFirstLetter() + '</span>';
+				   		//if(j+1 != list[i].tags.length) output += ", ";
 				   	}
 
 				   	output = output + "</p>";
+				   	
 				 	 }
-				 	 output = output + "<hr>";
+				 	 //output += "</td>";
+				 	 output += "</div>";
+				 	 if(numResults%3 == 0) output += "</div>";//output += "</tr>";
+				 	 //output = output + "<hr>";
 				 	}
 			   }
 			 }
@@ -357,3 +369,10 @@ function addNew()
 	    }
 	    get_signed_request(file);
 	}
+
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
+
+

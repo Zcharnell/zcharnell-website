@@ -46,7 +46,7 @@
   margin-right: auto;
   margin-bottom: 5px;
   max-width: 100%;
-  box-shadow: 0px 5px 5px #888888;
+  box-shadow: 0px 3px 3px #888888;
   border: 2px solid transparent;
   /*border-image: url(border3.png) 30 30 round;*/
 }
@@ -71,7 +71,8 @@
     border: 10px solid transparent;
   border-image: url(border2.png) 30 30 round;
   padding-bottom: 10px;
-  background-color: rgb(245,245,245);
+  color: white;
+  background-color: rgba(20,20,30,0.5);
   box-shadow: 0px 5px 5px #888888;
   margin: 10px;
 }
@@ -96,8 +97,23 @@
 
 #list
 {
-  height: 750px;
-  overflow: scroll;
+  /*height: 750px;
+  overflow-y: scroll;*/
+  /*border: 1px solid black;*/
+  padding: 5px;
+  /*background-color: white;*/
+}
+
+#name-image {
+  -webkit-text-fill-color: white; 
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  background-size: 100%;
+  color: black;
+  height: 250px;
+  background-position: center;
+  margin-top: 0px;
+  text-shadow: 5px 5px #000000;
 }
 
 .area { 
@@ -116,7 +132,7 @@
   width:600px; height:600px; 
   -webkit-transition:0.5s ease all;
   z-index:10000;
-  cursor:pointer;
+  cursor: pointer;
 }
 .experiment { 
   position: block;
@@ -128,5 +144,57 @@
 }
 
 #allgames {
+  -webkit-text-fill-color: white; 
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
+  background-position: top;
+  background-size: 100%;
+  color: white;
+}
 
+.visualizer{
+  background-image: url('img/Milkdrop.jpg'); 
+  padding-top: 1px; 
+  padding-bottom: 20px;
+  color: white;
+  background-position: center;
+}
+
+.list-image{
+  display: block;
+  max-width: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  border: 1px solid black;
+}
+
+#numResults{
+  font-size: 20px;
+  text-align: center;
+}
+
+.list-tag {
+  padding: 2px;
+  margin: 2px;
+  font-family: "Times New Roman", Times, serif;
+}
+
+#photouploader{
+  padding-bottom: 10px;
+  box-shadow: 0px 5px 5px #888888;
+  margin: 10px;
+  color: white;
+}
+
+.grid-image{
+  height: 250px;
+}
+
+#photo-uploader-image {
+  background-position: left bottom;
+  box-shadow: 0px 2px 2px #888888;
+}
+
+#visWindow{
+  -webkit-transition:0.5s ease all;
 }
