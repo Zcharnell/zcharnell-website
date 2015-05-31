@@ -74,6 +74,15 @@ function addNew()
           document.getElementById("fileUpload").value = "";
           return;
       }
+      var nameInput = filename.toLowerCase();
+      for(var i in bannedWords){
+      	if(nameInput.indexOf(bannedWords[i]) > -1){
+          alert("That name is not allowed. You can no longer upload.");
+          canUpload = false;
+          document.getElementById("fileUpload").value = "";
+          return;
+      	}
+      }
 
       if(document.getElementById('photoName').value == ""){
           alert("Please enter a name for the photo");
@@ -85,6 +94,7 @@ function addNew()
       for(var i in bannedWords){
       	if(nameInput.indexOf(bannedWords[i]) > -1){
           alert("That name is not allowed. You can no longer upload.");
+          canUpload = false;
           document.getElementById("photoName").value = "";
           return;
       	}

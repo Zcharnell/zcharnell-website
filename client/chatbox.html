@@ -1,0 +1,124 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <title>Socket.IO Chat Example</title>
+  <style>
+    #chat{
+      height: 300px;
+      overflow: auto;
+    }
+    #contentWrapper{
+      display: none;
+    }
+    #chatWrapper{
+      float: left;
+      border: 1px solid black;
+      margin: 1px;
+    }
+    .message-date{
+      float:right;
+      font-size: 10px;
+    }
+    #usersWrapper{
+    	border: 1px solid black;
+    	text-align: center;
+    }
+    #users-title{
+    	font-style: bold;
+    	text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div id='usernameWrapper'>
+    <p>Enter a username:</p>
+    <p id='usernameError'></p>
+    <form id="setUsername">
+      <input size='35' id='username' placeholder='Username'></input>
+      <input type='submit'></input>
+    </form>
+  </div>
+
+  <div id='contentWrapper' class='container col-md-4'>
+    <div id='chatWrapper' class='col-md-7'>
+      <div id='chat'></div>
+      <form id='send-message'>
+        <input class='col-md-9' id='message' placeholder='Enter a message.'></input>
+        <input class='col-md-3' type='submit'></input>
+      </form>
+    </div>
+    <div class='col-md-1'></div>
+    <div id='usersWrapper' class='col-md-4'>
+    	<p id='users-title'>Users</p>
+    	<div id='users'></div>
+  	</div>
+  </div>
+
+  <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+  <!--<script src="javascript/jquery-1.11.0.min.js"></script>-->
+  <script src="/socket.io/socket.io.js"></script>
+  <script>
+    jQuery(function($){
+      var socket = io.connect(),
+        $usernameForm = $('#setUsername'),
+        $usernameError = $('#usernameError'),
+        $usernameBox = $('#username'),
+        $messageForm = $('#send-message'),
+        $messageBox = $('#message'),
+        $chat = $('#chat'),
+        $users = $('#users');
+
+      $usernameForm.submit(function(e){
+        console.log('---username submit');
+        e.preventDefault();
+        socket.emit('new user',$usernameBox.val(),function(data){
+          if(data){
+            $('#usernameWrapper').hide();
+            $('#contentWrapper').show();
+          } else {
+            $usernameError.html('That username is already taken. Try again.');  
+          }
+        });
+        $usernameBox.val('');
+        console.log(e);
+        //$('#chatWrapper').height(window.innerHeight - $messageForm.height());
+        //$chat.height(window.innerHeight - $messageForm.height()*2);
+        /*console.log(window.innerHeight);
+        console.log($messageForm.height());
+        console.log($messageBox.height());*/
+      });
+
+      socket.on('usernames',function(data){
+        var html = '';
+        for(var i=0; i<data.length; i++){
+          html += data[i] + '<br/>';
+        }
+        $users.html(html);
+      });
+
+      $messageForm.submit(function(e){
+        console.log('---message submit');
+        e.preventDefault();
+        socket.emit('send message',$messageBox.val());
+        $messageBox.val('');
+      });
+
+      socket.on('new message',function(data){
+        var d = new Date();
+        var time = d.getHours()%12;
+        if(time == 0) time = 12;
+        time += ':' + d.getMinutes();
+        if(d.getHours() > 11) time += 'pm';
+        else time += 'am';
+
+        $chat.append('<b>' + data.username + '</b>: ' + data.message + "<span class='message-date'>" + time + "</span><br/>");
+        $chat.scrollTop(99999);
+        //$('#chatWrapper').height(window.innerHeight - $messageForm.height());
+        //$chat.height(window.innerHeight - $messageForm.height()*2);
+      })
+    });
+  </script>
+</body>
+</html>

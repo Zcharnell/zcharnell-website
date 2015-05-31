@@ -109,7 +109,8 @@
   background: -o-linear-gradient(red, white);
   background: -moz-linear-gradient(red, white); 
   background: linear-gradient(red, white); 
-  -webkit-transition:0.01s ease all;}
+  -webkit-transition:0.01s ease all;
+}
 .initiator {
   position:absolute;
   width:600px; height:600px; 
@@ -121,7 +122,7 @@
   position: block;
   margin-left: auto; 
   margin-right: auto;
-  }
+}
 .big {
   font-size: 22px;
 }
@@ -182,4 +183,11 @@
 
 #visWindow{
   -webkit-transition:0.5s ease all;
+}
+
+.footer{
+  border-top: 1px solid gray;
+  margin: 1px;
+  padding: 5px;
+  color: rgb(210,210,250);
 }

@@ -1,11 +1,61 @@
 var express = require('express'),
   app = express(),
+  server = require('http').createServer(app),
+  io = require('socket.io').listen(server),
   bodyParser = require('body-parser'),
   errorHandler = require('errorhandler'),
   methodOverride = require('method-override');
 
 app.set('port', (process.env.PORT || 5000));
 app.use(express.static(__dirname + '/client'));
+
+
+
+//###########################
+//         Chatbox
+//###########################
+
+var usernames = [];
+ 
+io.sockets.on('connection', function (socket) {
+  socket.on('new user',function(data,callback){
+    if(usernames.indexOf(data) != -1) {
+      callback(false);
+    } else {
+      callback(true);
+      socket.username = data;
+      usernames.push(data);
+      updateUsernames();
+    }
+  });
+
+  function updateUsernames(){
+    io.sockets.emit('usernames',usernames);
+  }
+
+  console.log('A socket connected!');
+  socket.on('send message',function(data){
+    io.sockets.emit('new message', {message: data, username: socket.username});
+  });
+
+  socket.on('disconnect',function(data){
+    if(!socket.username) return;
+    usernames.splice(usernames.indexOf(socket.username),1);
+    updateUsernames();
+  });
+}); 
+
+
+
+
+
+
+
+
+//###########################
+//    Photo Uploader
+//###########################
+
 
 var db = require('mongoskin').db('mongodb://heroku_app37223829:tolsu4ust0l7mhob7ahlon4v14@ds041032.mongolab.com:41032/heroku_app37223829/zcharnellphotos');
 console.log(db);
@@ -161,6 +211,6 @@ app.get('/sign_s3', function(req, res){
 
 
 
-app.listen(app.get('port'), function() {
+server.listen(app.get('port'), function() {
   console.log('Node app is running on port', app.get('port'));
 });
