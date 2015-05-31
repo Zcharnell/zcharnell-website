@@ -24,7 +24,9 @@ io.sockets.on('connection', function (socket) {
     } else {
       callback(true);
       socket.username = data;
-      usernames.push(data);
+      usernames.push(socket.username);
+      var msg = '<span class="user-connected">' + socket.username + ' has connected.</span>';
+      io.sockets.emit('new message',{message: msg});
       updateUsernames();
     }
   });
@@ -42,6 +44,8 @@ io.sockets.on('connection', function (socket) {
     if(!socket.username) return;
     usernames.splice(usernames.indexOf(socket.username),1);
     updateUsernames();
+    var msg = '<span class="user-connected">' + socket.username + ' has disconnected.</span>';
+    io.sockets.emit('new message',{message: msg});
   });
 }); 
 

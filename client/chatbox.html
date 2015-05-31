@@ -29,6 +29,11 @@
     	font-style: bold;
     	text-decoration: underline;
     }
+    .user-connected{
+    	font-style: italic;
+    	font-size: 12px;
+    	font-color: gray;
+    }
   </style>
 </head>
 <body>
@@ -113,7 +118,10 @@
         if(d.getHours() > 11) time += 'pm';
         else time += 'am';
 
-        $chat.append('<b>' + data.username + '</b>: ' + data.message + "<span class='message-date'>" + time + "</span><br/>");
+        var message = '';
+        if(data.username) message += '<b>' + data.username + '</b>: ';
+        message += data.message + "<span class='message-date'>" + time + "</span><br/>";
+        $chat.append(message);
         $chat.scrollTop(99999);
         //$('#chatWrapper').height(window.innerHeight - $messageForm.height());
         //$chat.height(window.innerHeight - $messageForm.height()*2);
