@@ -6,7 +6,7 @@
   <title>Chatbox - Zcharnell</title>
   <style>
     #chat{
-      height: 300px;
+      height: 90%;
       overflow: auto;
     }
     #contentWrapper{
@@ -16,6 +16,7 @@
       float: left;
       border: 1px solid black;
       margin: 1px;
+      font-size: 12px;
     }
     .message-date{
       float:right;
@@ -34,10 +35,17 @@
     	font-size: 12px;
     	font-color: gray;
     }
+    #usernameWrapper{
+    	margin-top: 10%;
+    	font-size: 30px;
+    }
+    #send-message{
+    	font-size: 14px;
+    }
   </style>
 </head>
 <body>
-  <div id='usernameWrapper'>
+  <div id='usernameWrapper' class='text-center'>
     <p>Enter a username:</p>
     <p id='usernameError'></p>
     <form id="setUsername">
@@ -45,8 +53,8 @@
       <input type='submit'></input>
     </form>
   </div>
-
-  <div id='contentWrapper' class='container col-md-4 col-xs-12'>
+  <div class='col-md-3'></div>
+  <div id='contentWrapper' class='container col-md-6 col-xs-12'>
     <div id='chatWrapper' class='col-md-8 col-xs-8'>
       <div id='chat'></div>
       <form id='send-message'>
@@ -60,6 +68,7 @@
     	<div id='users'></div>
   	</div>
   </div>
+  <div class='col-md-3'></div>
 
   <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
   <!--<script src="javascript/jquery-1.11.0.min.js"></script>-->
@@ -75,6 +84,18 @@
         $chat = $('#chat'),
         $users = $('#users');
 
+      if( /Android|webOS|iPhone|iPad|iPod|BlackBerry/i.test(navigator.userAgent) ) {
+			  console.log('mobile');
+			  $('#usernameWrapper').css('font-size',30);
+			  $('#chatWrapper').height(window.innerHeight);
+			} else {
+				console.log('Desktop');
+				console.log(window.innerHeight + ',' + $messageForm.height());
+				console.log(window.innerHeight + ',' + $('#chatWrapper').height());
+				console.log(window.innerHeight + ',' + $chat.height());
+				$('#chatWrapper').height(window.innerHeight);
+			}
+
       $usernameForm.submit(function(e){
         console.log('---username submit');
         e.preventDefault();
@@ -88,6 +109,8 @@
         });
         $usernameBox.val('');
         console.log(e);
+        console.log(window.innerHeight + ',' + $messageBox.height());
+				console.log(window.innerHeight + ',' + $chat.height());
         //$('#chatWrapper').height(window.innerHeight - $messageForm.height());
         //$chat.height(window.innerHeight - $messageForm.height()*2);
         /*console.log(window.innerHeight);
@@ -120,7 +143,7 @@
 
         var message = '';
         if(data.username) message += '<b>' + data.username + '</b>: ';
-        message += data.message + "<span class='message-date'>" + time + "</span><br/>";
+        message += "<div class='message-date'>" + time + "</div>" + data.message + "<br/>";
         $chat.append(message);
         $chat.scrollTop(99999);
         //$('#chatWrapper').height(window.innerHeight - $messageForm.height());
