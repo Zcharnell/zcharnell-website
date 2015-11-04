@@ -1,0 +1,20 @@
+<div class='list-unit'>
+    <div class='list-header'>
+        <div class='title'>{{unit.unitName}}</div>
+        <!-- <div ng-click="addUnit({unit:{unitName:unit.unitName,unitID:unit.unitID,goldCost:unit.goldCost}})"> -->
+        <div class="add-button" ng-click="addUnit()">
+            <span class="icon icon-plus"></span>
+        </div>
+    </div>
+    <div class="list-container">
+        <ul class="list">
+            <li> HP: {{unit.hitpoints}} </li>
+            <li> Weapon: {{unit.weapons}} </li>
+            <li> Armor: {{unit.armorRating}} </li>
+            <li> Regiment Size: {{unit.maxRegimentSize}} </li>
+            <li> Unit Tags: {{unit.unitTags}} </li>
+        </ul>
+        <p>Cost: {{unit.goldCost}}g</p>
+    </div>
+    <!-- <check-list name='q.id' selected='q.selected' option='q.prices'></check-list> -->
+</div>

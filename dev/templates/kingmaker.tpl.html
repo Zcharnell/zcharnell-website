@@ -1,0 +1,75 @@
+<div class='kingmaker'>
+    <div class="army-list">
+        <div class="header">
+            <div class="title">Barracks</div>
+        </div>
+        <list-units-data units="KingmakerCtrl.greekUnits" on-unit-add="refreshArmy()"></list-units-data>
+    </div>
+    <div class="checkout-units">
+        <div class="header">
+            <div class="title">The King's Army</div>
+        </div>
+        <div class="gold">
+            <span class="max-cost">Treasury: {{KingmakerCtrl.armyList.goldCost.maxCost}}g</span>
+            <span class="army-cost">Army Cost: <span ng-class="{'over-limit':KingmakerCtrl.armyList.goldCost.total > KingmakerCtrl.armyList.goldCost.maxCost}">{{KingmakerCtrl.armyList.goldCost.total}}g</span> </span>
+        </div>
+        <ul class="units">
+            <li class="list-title">
+                <span>Infantry</span>
+                <span class="class-gold-cost">{{KingmakerCtrl.armyList.goldCost.infantry}}g</span>
+            </li>
+            <li ng-repeat="unit in KingmakerCtrl.armyList.infantry | orderBy:'-goldCost'">
+                <span>{{unit.unitName}}</span>
+                <span>{{unit.goldCost}}</span>
+                <span class="icon icon-minus" ng-click="KingmakerCtrl.removeUnit(unit)"></span>
+            </li>
+        </ul>
+        <ul class="units">
+            <li class="list-title">
+                <span>Ranged</span>
+                <span class="class-gold-cost">{{KingmakerCtrl.armyList.goldCost.ranged}}g</span>
+            </li>
+            <li ng-repeat="unit in KingmakerCtrl.armyList.ranged | orderBy:'-goldCost'">
+                <span>{{unit.unitName}}</span>
+                <span>{{unit.goldCost}}</span>
+                <span class="icon icon-minus" ng-click="KingmakerCtrl.removeUnit(unit)"></span>
+            </li>
+        </ul>
+        <ul class="units">
+            <li class="list-title">
+                <span>Cavalry</span>
+                <span class="class-gold-cost">{{KingmakerCtrl.armyList.goldCost.cavalry}}g</span>
+            </li>
+            <li ng-repeat="unit in KingmakerCtrl.armyList.cavalry | orderBy:'-goldCost'">
+                <span>{{unit.unitName}}</span>
+                <span>{{unit.goldCost}}</span>
+                <span class="icon icon-minus" ng-click="KingmakerCtrl.removeUnit(unit)"></span>
+            </li>
+        </ul>
+        <div class="checkout">
+            <span class="checkout-button" ui-sref="combat">To War!</span>
+        </div>
+    </div>
+         
+        <!--<div>
+             <div class="panel panel-primary">
+                <div id="divTotal" class="panel-heading">   
+                    <h3 class="panel-title">Total</h3>
+                </div>
+                <div class="panel-body">
+                    <ol>
+                        <div ng-repeat='unit in armyList'>
+                            <li class='army-list-unit'> {{unit.unitName}} <span class='float-right'>{{unit.goldCost}}g</span></li>
+                            
+                        </div>
+                    </ol>
+                    <h2>{{total()}}g</h2>
+                </div>
+            </div>
+             
+            <div class="text-center">
+                <a href="#/checkout" class="btn btn-danger">Checkout <span class="glyphicon glyphicon-shopping-cart" aria-hidden="true"></span>
+                </a>
+            </div>
+        </div>-->
+</div>

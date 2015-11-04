@@ -1,0 +1,655 @@
+<!doctype html>
+<html lang='en'>
+<head>
+	<meta name='author' content='Zachary Charnell'>
+  <meta name='keywords' content='Zachary,Charnell,Zach,Web,Developer,Development,Front,End,Front-End,SunAngel,Zakuu,Warring,States'>
+  <meta name='description' content='The best web developer you can find. I work to make your company more successful. Email me at zcharnell@gmail.com.'>
+  <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,300italic,100italic,400italic,700italic' rel='stylesheet' type='text/css'>
+	<link href="css/main.css" rel="stylesheet" />
+	<link href="css/lightbox.css" rel="stylesheet" />
+	<title>Zachary Charnell</title>
+</head>
+<body>
+<div class="image-loader">
+	 <img width="1px" height="1px" src="img/games.jpg">
+	 <img width="1px" height="1px" src="img/bg.jpg">
+	 <img width="1px" height="1px" src="img/visualizer_red.png">
+	 <img width="1px" height="1px" src="img/VirtArenaScreenshot.jpg">
+	 <img width="1px" height="1px" src="img/camera.jpg">
+	 <img width="1px" height="1px" src="img/IberiaProject.jpg">
+	 <img width="1px" height="1px" src="img/station.jpg">
+	 <img width="1px" height="1px" src="img/Milkdrop_Spikeball.jpg">
+	 <img width="1px" height="1px" src="img/VirtArenaScreenshot2.jpg">
+	 <img width="1px" height="1px" src="img/Iberia.jpg">
+	 <img width="1px" height="1px" src="img/EastAsia.jpg">
+</div>
+<header>
+	<div class="container">
+		<span class="title"> Zachary Charnell </span>
+		<nav>
+			<span>YES</span>
+		</nav>
+	</div>
+</header>
+<div id="main">
+	<div class="container">
+		<div class="title"> Zachary Charnell </div>
+		<div class="title-bar"></div>
+		<div class="desc"> Web and Game Developer </div>
+	</div>
+	<!--<a href=login.html>Login/Sign up</a>-->
+</div>
+
+<div id="projects">
+		<div class="project" id="visualizer-top">
+			<!-- <h2 class='center'>Music Visualizer</h2> -->
+			<div class='project-link visualizer-link'>
+				<span class="helper"></span>
+				<img src='/img/visualizer_red.png' class='project-image'>
+			</div>
+		</div>
+		<!-- <div class="project" id="virt-arena-top">
+			<div class='project-link virt-arena-link'>
+				<span class="helper"></span>
+				<img src='/img/VirtArenaScreenshot.jpg' class='project-image'>
+			</div>
+		</div> -->
+
+		<div class="project" id="photo-uploader-top">
+			<!-- <h2 class='center'>Photo Uploader</h2> -->
+			<div class='project-link photo-uploader-link'>
+				<span class="helper"></span>
+				<img src='/img/camera.jpg' class='project-image'>
+			</div>
+		</div>
+
+		<div id='projects-1' class="nodisplay">
+
+			<div id="visualizer" class="project-slideout nodisplay">
+				<h1 class='project-title'>Music Visualizer</h1>
+				<div class="dropdown-images">
+					<div class="experiment text-center" style="background-image: url('/img/visualizer_red.png')" id="visWindow">
+						<div class='visualizer'>
+							<p>Color Display
+							<select style='margin-left: auto; margin-right: auto; color: black' id='colorSelect' onChange='changeColor()'>
+								<option style='color: black' value="default">Default</option>
+								<option style='color: black' value="electronic" selected>Electronic</option>
+							  	<option style='color: black' value="relaxing">Relaxing</option>
+							  	<option style='color: black' value="pop">Pop</option>
+							  	<option style='color: black' value="rock">Rock</option>
+							</select></p>
+							<button style='color: black' type='button' onClick="changeAudio('pop.mp3')">Maroon 5 (Pop)</button>
+							<button style='color: black' type='button' onClick="changeAudio('rock.mp3')">Before I Die (Rock)</button>
+							<button style='color: black' type='button' onClick="changeAudio('relaxing.mp3')">Enya (Relaxing)</button><br><br>
+							<button style='color: black' id='startstop' class='glyphicon glyphicon-play' onClick='startAudio()'></button>
+							<!--<input type='file' id='fileUpload' onChange='changeAudio()'>-->
+						</div>
+
+						<div id='initiator' class="initiator"></div>
+						<div class="bars-container'">
+							<div id="bars" class="area"></div>
+						</div>
+					</div>
+				</div>
+				<audio id='audioIn' src='pop.mp3'></audio>
+				<div class='container left'>
+					<p>The music visualizer analyzes the frequencies of a song. It makes use of Javascript's AudioContext object to analyze each frame of the song. The bars are drawn using HTML and CSS, with Javascript determining their height based on the values of the AudioContext object.</p>
+				</div>
+				<div class="container right">
+					<div>Independent Project</div>
+					<div>Developer & Designer</div>
+					<div>HTML, CSS, Javascript</div>
+				</div>
+			</div>
+
+			<!-- <div id='virt-arena' class="project-slideout nodisplay">
+				<h1 class='project-title'>Virtual Arena</h1>
+				<div class="dropdown-images">
+					<a href='/img/VirtArenaScreenshot.jpg'><img src='/img/VirtArenaScreenshot.jpg' class='dropdown-image'></a>
+				
+					
+				</div>
+				<div></div>
+				<div class='container left'>
+					
+					<p>Board game ported to HTML, requiring a graphical user interface for player interaction and feedback. Focused on the technical development of a game, including artificial intelligence, pathfinding, graphic rendering, and interactivity. Built entirely using Javascript and HTML5 Canvas.</p>
+				</div>
+				<div class="container right">
+					<div>Personal Project</div>
+					<div>Lead Developer & Designer</div>
+					<div>HTML5, Javascript</div>
+				</div>
+			</div> -->
+
+			<div id="photo-uploader" class="project-slideout nodisplay">
+				<div class="jumbotron text-center" id="photo-uploader-image">
+					<h1 id='header'> Photo Uploader </h1>
+					<h4 id='header'> Javascript with MongoDB database and AWS S3 image hosting</h4>
+				    <input style='margin-left: auto; margin-right: auto' type='file' id='fileUpload'>
+				    <br>
+					   <input type='text' id='photoName' placeholder='Photo name' style='color: black'>
+					   <br><br>
+					   <input type="checkbox" name="category" id='landscapeCheckbox' value="Landscape">Landscape
+					   <input type="checkbox" name="category" id='foodCheckbox' value="Food">Food
+					   <input type="checkbox" name="category" id='animalsCheckbox' value="Animals">Animals
+					   <input type="checkbox" name="category" id='selfieCheckbox' value="Selfie">Selfie
+					   <input type="checkbox" name="category" id='otherCheckbox' value="Other">Other
+					   <br><br>
+				    <button id='uploadButton' onclick="addNew()" style='color: black'>Upload Photo</button>
+					<br><br>
+					<!--<button onclick="updateList()">My Photos</button>-->
+				</div>
+
+				<div class='container'>
+					<div class='text-center'>
+						<input type="text" id="searchText" placeholder="Search name or tag." style='color: black' name="q">
+						<button onclick="searchTags()" class="btn btn-default" type="button"><i class="glyphicon glyphicon-search"></i></button>
+					  	<br><button onclick="updateList()" style='color: black'>Show All Photos</button>
+					</div>
+					<br>
+					<p id='numResults'></p>
+					<div id="list"> 
+						No photos to show.
+					</div>
+				</div>
+			</div>
+
+		</div>
+
+		<div class="project" id="warring-states-top">
+			<!-- <h2 class='center'>Warring States</h2> -->
+			<div class='project-link warring-states-link'>
+				<span class="helper"></span>
+				<img src='/img/IberiaProject.jpg' class='project-image'>
+			</div>
+		</div>
+
+		<div class="project" id="coh2-guide-top">
+			<!-- <h2 class='center'>Warring States</h2> -->
+			<div class='project-link coh2-guide-link'>
+				<!-- <span class="helper"></span> -->
+				<h4>Company of Heroes 2</h4>
+				<!-- <img src='/img/IberiaProject.jpg' class='project-image'> -->
+			</div>
+		</div>
+
+		<div id='projects-2' class="nodisplay">
+
+			<div id='warring-states' class="project-slideout nodisplay">
+				<h1 class='project-title'>Warring States</h1>
+				<div class="dropdown-images less-padding">
+					<a href='/img/Iberia.jpg'><img src='/img/Iberia.jpg'></a>
+					<!-- <a href='/image/EastAsia.jpg'><img src='/img/EastAsia.jpg' class='project-image'></a> -->
+				</div>
+					<!-- <a href='/img/Iberia.jpg'><img src='/img/Iberia.jpg' class='project-image'></a>
+					<a href='/image/EastAsia.jpg'><img src='/img/EastAsia.jpg' class='project-image'></a> -->
+				<div class='container left'>
+					<p>Placed an emphasis on creating unique and challenging gameplay situations inspired by a variety of historical eras. Created dynamic political landscapes in which a wide variety of claimants could reasonably become great powers. Enhanced the political system including a greater variety and significance of government types, dynastic takeovers, assassination, and a more nuanced approach to vassals.</p>
+					<!-- </ul> -->
+				</div>
+				<div class="container right small">
+					<div><a href='http://steamcommunity.com/sharedfiles/filedetails/?id=185238907' class='center'>Steam Workshop Mod</a></div>
+					<div>Lead Developer, Map & Event Designer</div>
+					<div>Paradox's Scripting Language</div>
+					<div><a href='https://www.youtube.com/watch?v=nB7RYEVuku4' class='center'>Youtube Highlight by Shenryyr</a></div>
+					<div>14,000+ Subscribers</div>
+					<div>12th All-Time Most Popular Mod</div>
+				</div>	
+					<!-- <p><b class='largefont'>Warring States</b><br>
+						Mod, Europa Universalis IV<br>
+						<a href='http://steamcommunity.com/sharedfiles/filedetails/?id=185238907' class='center'>Steam Workshop Page</a><br>
+						<a href='https://www.youtube.com/watch?v=nB7RYEVuku4' class='center'>Youtube Highlight by Shenryyr</a><br>
+						</p><br>
+						<p><b>Role</b> <br>Team Leader, Map & Event Designer, Programmer</p>
+						<p><b>Tools</b> <br>Scripting, Photoshop<br></p>
+						<p><b>Timeline</b> <br>August 2013 - Present</p>
+						<p><b>Stats</b> <br>14,000+ Subscribers<br>
+						12th All-Time Most Popular Mod</p><br>
+					<p>Notes:</p>
+					<ul>
+						<li>Placed an emphasis on creating unique and challenging gameplay situations inspired by a variety of historical eras.</li>
+						<li>Created dynamic political landscapes in which a wide variety of claimants could reasonably become great powers.</li>
+						<li>Enhanced the political system including a greater variety and significance of government types, dynastic takeovers, assassination, and a more nuanced approach to vassals.</li>
+					</ul> -->
+			</div>
+
+			<div id='coh2-guide' class="project-slideout nodisplay">
+				<h1 class='project-title small'>Prima Games<br>Strategy Guide</h1>
+				<div class="dropdown-images less-padding">
+					<a href='/img/Iberia.jpg'><img src='/img/Iberia.jpg'></a>
+					<!-- <a href='/image/EastAsia.jpg'><img src='/img/EastAsia.jpg' class='project-image'></a> -->
+				</div>
+					<!-- <a href='/img/Iberia.jpg'><img src='/img/Iberia.jpg' class='project-image'></a>
+					<a href='/image/EastAsia.jpg'><img src='/img/EastAsia.jpg' class='project-image'></a> -->
+				<div class='container left'>
+					<p>Chosen to write for the guide due to positive community reputation, player skill, and previous guide-writing experience. Focused on user experience and player mentality with an emphasis on clarity and cohesion in my writing. Collaborated with an editor and web developer during the product cycle.</p>
+					<!-- </ul> -->
+				</div>
+				<div class="container right small">
+					<div>Client: Prima Games</div>
+					<div>Game: Company of Heroes 2</div>
+					<div>Writer, Campaign & Theater of War</div>
+				</div>	
+					<!-- <p><b class='largefont'>Warring States</b><br>
+						Mod, Europa Universalis IV<br>
+						<a href='http://steamcommunity.com/sharedfiles/filedetails/?id=185238907' class='center'>Steam Workshop Page</a><br>
+						<a href='https://www.youtube.com/watch?v=nB7RYEVuku4' class='center'>Youtube Highlight by Shenryyr</a><br>
+						</p><br>
+						<p><b>Role</b> <br>Team Leader, Map & Event Designer, Programmer</p>
+						<p><b>Tools</b> <br>Scripting, Photoshop<br></p>
+						<p><b>Timeline</b> <br>August 2013 - Present</p>
+						<p><b>Stats</b> <br>14,000+ Subscribers<br>
+						12th All-Time Most Popular Mod</p><br>
+					<p>Notes:</p>
+					<ul>
+						<li>Placed an emphasis on creating unique and challenging gameplay situations inspired by a variety of historical eras.</li>
+						<li>Created dynamic political landscapes in which a wide variety of claimants could reasonably become great powers.</li>
+						<li>Enhanced the political system including a greater variety and significance of government types, dynastic takeovers, assassination, and a more nuanced approach to vassals.</li>
+					</ul> -->
+			</div>
+
+		</div>
+</div>
+
+
+
+
+
+
+<!-- <div class="experiment text-center" style="background-image: url('/img/visualizer_red.png')" id="visWindow">
+	<div class='visualizer' style="background-image: url('img/Milkdrop_Spikeball.jpg')">
+		<h1 class='center'>Music Visualizer</h1>
+		<p class='center'>(May not work on mobile; try Chrome on Desktop)</p>
+		<p>Color Display
+		<select style='margin-left: auto; margin-right: auto; color: black' id='colorSelect' onChange='changeColor()'>
+			<option style='color: black' value="default">Default</option>
+			<option style='color: black' value="electronic" selected>Electronic</option>
+		  	<option style='color: black' value="relaxing">Relaxing</option>
+		  	<option style='color: black' value="pop">Pop</option>
+		  	<option style='color: black' value="rock">Rock</option>
+		</select></p>
+		<button style='color: black' type='button' onClick="changeAudio('pop.mp3')">Maroon 5 (Pop)</button>
+		<button style='color: black' type='button' onClick="changeAudio('rock.mp3')">Before I Die (Rock)</button>
+		<button style='color: black' type='button' onClick="changeAudio('relaxing.mp3')">Enya (Relaxing)</button><br><br>
+		<button style='color: black' id='startstop' class='glyphicon glyphicon-play' onClick='startAudio()'></button>
+	</div>
+
+	<div id='initiator' class="initiator"></div>
+	<div id="bars" class="area"></div>
+</div>
+<audio id='audioIn' src='pop.mp3'></audio> -->
+
+
+<!-- <h1 id='allgames' class='jumbotron text-center' style='background-image: url("img/games.jpg")'>Games</h1> -->
+
+
+
+
+	
+
+
+	<!-- <div class='blockline col-md-12' id='coh2-guide'></div><br><br>
+	<div class='col-md-6 project-container'>
+		<p class='center'><b class='largefont'>Company of Heroes 2 Prima Official eGuide</b><br>
+			Game Guide<br></p><br>
+			<p><b>Role</b> <br>Writer, Campaign & Theater of War</p>
+			<p><b>Tools</b> <br>Word, Photoshop</p>
+			<p><b>Timeline</b> <br>May 2013 - July 2013</p><br>
+		<p>Notes:</p>
+		<ul>
+			<li>Chosen to write for the guide due to positive community reputation, player skill, and previous guide-writing experience.</li>
+			<li>Focused on user experience and player mentality with an emphasis on clarity and cohesion in my writing.</li>
+			<li>Collaborated with an editor and web developer during the product cycle.</li>
+		</ul>
+	</div> -->
+
+	<!-- <div class='text-center footer col-md-12'>
+		<div class='container'>
+			<small>
+				Created by Zachary Charnell 2015<br>
+				<a href='mailto:zcharnell@gmail.com'>zcharnell@gmail.com</a><br>
+				All content and trademarks property of their respective owners.
+			</small>
+		</div>
+	</div> -->
+
+	<script src="javascript/md5.js"></script>
+	<script src="javascript/jquery-1.11.0.min.js"></script>
+	<script src="javascript/lightbox.min.js"></script>
+	<script type='text/javascript' src='javascript/unsplash.js'></script>
+	<script>
+	var barColor = 'linear-gradient(red, blue)';
+			var globalFFTSize = 256;
+			var vis = document.querySelectorAll('.initiator');
+			var visual = null;
+			var lastVisWindow;
+			var lastVisWindowParentId;
+
+			window.AudioContext = window.AudioContext || window.webkitAudioContext || window.mozAudioContext;
+
+			var renderers = {
+				'visWindow': (function() {
+					var barsArr = [],
+						initialized = false,
+						bars,
+						count,
+						width;
+
+					var height = 0;
+
+					var init = function(config) {
+						count = config.count;
+						count -= 10;
+						width = config.width;
+						var barWidth = (width/count) >> 0;
+						height = config.height;
+
+						bars = document.getElementById('bars');
+						initialized = true;
+					};
+					var max = 256;
+
+					var renderFrame = function(frequencyData) {
+						var freqData = '';
+						var myNode = document.getElementById("bars");
+						while (myNode.firstChild) {
+						    myNode.removeChild(myNode.firstChild);
+						}
+						barsArr = [];
+						var barWidth = (width/count) >> 0;
+						for(var i=0; i<count; i++) {
+							if(frequencyData[i] > 0) {
+								var nunode = document.createElement('div');
+								nunode.classList.add('bar');
+								nunode.style.width = barWidth + 'px';
+								nunode.style.left = ((barWidth+2) * i) + 'px';
+								nunode.style.background = barColor;
+								barsArr.push(nunode);
+								bars.appendChild(nunode);
+							}
+						}
+						for(var i = 0; i < barsArr.length; i++) {
+							var bar = barsArr[i];
+							bar.style.height = ((frequencyData[i]/max)*height + 'px');
+							freqData += '[' + frequencyData[i] + '],';
+						}
+					};
+
+
+					return {
+						init: init,
+						isInitialized: function() {
+							return initialized;
+						},
+						renderFrame: renderFrame
+					}
+				})()
+			}
+
+			function startAudio(){
+				var visWindow = vis[0];
+				var id = visWindow.parentNode.id;
+
+				if (!visual) {
+					visual = new Visualization({renderer: renderers[id] });
+				}
+				visual.setRenderer(renderers[id]);
+				if (visual.isPlaying()) {
+					visual.stop();
+					//visWindow.style.backgroundColor = 'rgba(255,255,255,0.5)';
+					document.getElementById('startstop').className = 'glyphicon glyphicon-play'
+					document.getElementById('visWindow').style.background = "url('img/play_button.png') no-repeat center";
+				} else {
+					visual.start();
+					visWindow.style.backgroundColor = 'rgba(0,0,0,0)';
+					document.getElementById('startstop').className = 'glyphicon glyphicon-pause'
+					document.getElementById('visWindow').style.background = "rgba(0,0,0,0)";
+				}
+				lastVisWindowParentId = id;
+				lastVisWindow = visWindow;
+			}
+
+			function Visualization(config) {
+				var audio,
+					audioStream,
+					analyser,
+					source,
+					audioCtx,
+					canvasCtx,
+					frequencyData,
+					running = false,
+					renderer = config.renderer,
+					rect = document.getElementById('initiator').getBoundingClientRect(),
+					width = window.innerWidth-(64*2),
+					height = 500;
+					//console.log('width: ' + width);
+					if(window.innerHeight < 500) height = window.innerHeight-rect.top;
+
+					//width = config.width || 1200,
+					//height = config.height || 600;
+
+				var init = function() {
+					audio = document.getElementById('audioIn');
+					audioCtx = new AudioContext();
+					analyser = audioCtx.createAnalyser();
+					//console.log('FrequencyBinCount: ' + analyser.frequencyBinCount);
+					//console.log('Sample rate: ' +audioCtx.sampleRate + 'hz');
+					source =  audioCtx.createMediaElementSource(audio);
+					source.connect(analyser);
+					analyser.connect(audioCtx.destination);
+					analyser.fftSize = globalFFTSize;
+					//console.log('FFT size: ' + analyser.fftSize);
+					frequencyData = new Uint8Array(analyser.frequencyBinCount);
+					renderer.init({
+						count: analyser.frequencyBinCount,
+						width: width,
+						height: height
+					});
+				};
+				this.start = function() {
+					audio.play();
+					running = true;
+					renderFrame();
+					//console.log('Start!');
+				};
+				this.stop = function() {
+					running = false;
+					audio.pause();
+				};
+				this.setRenderer = function(r) {
+					if (!r.isInitialized()) {
+						r.init({
+							count: analyser.frequencyBinCount,
+							width: width,
+							height: height
+						});
+					} 
+					renderer = r;
+				};
+				this.isPlaying = function() {
+					return running;
+				}
+
+				var renderFrame = function() {
+					analyser.getByteFrequencyData(frequencyData);
+					renderer.renderFrame(frequencyData);
+					if (running) {
+						requestAnimationFrame(renderFrame);
+					}
+				};
+
+				init();
+
+			};
+
+			function changeFFTSize() {
+				globalFFTSize = parseInt(document.getElementById('fftSize').value);
+			}
+
+			function changeAudio(audioSrc) {
+				if(visual) {
+					visual.stop();
+				}
+				document.getElementById('audioIn').src = audioSrc;
+				document.getElementById('startstop').className = 'glyphicon glyphicon-play'
+			}
+
+			function changeColor() {
+				switch(document.getElementById('colorSelect').value) {
+					case 'pop':
+						barColor = 'linear-gradient(rgb(238,114,252), rgb(142,152,204))';
+						break;
+					case 'rock':
+						barColor = 'linear-gradient(rgb(150,0,0), red)';
+						break;
+					case 'relaxing':
+						barColor = 'linear-gradient(rgb(230,230,230), rgb(57,143,203))';
+						break;
+					case 'electronic':
+						barColor = 'linear-gradient(red, blue)';
+						break;
+					case 'default':
+						barColor = 'linear-gradient(rgb(0,0,0), rgb(200,200,200))';
+						break;
+				}
+			}
+
+	window.onload = function() {
+			document.getElementById('initiator').style.width = window.innerWidth;
+			document.getElementById('bars').style.width = 900;
+			document.getElementById('bars').style.height = 430;
+
+			for(var i=0; i<vis.length; i++) {
+					vis[i].onclick = (function() {
+
+						return function() {
+							var visWindow = this;
+							var id = visWindow.parentNode.id;
+
+								if (!visual) {
+									visual = new Visualization({renderer: renderers[id] });
+								}
+								visual.setRenderer(renderers[id]);
+								if (visual.isPlaying()) {
+									visual.stop();
+									//visWindow.style.backgroundColor = 'rgba(255,255,255,0.5)';
+									document.getElementById('visWindow').style.background = "url('img/play_button.png') no-repeat center";
+								} else {
+									visual.start();
+									visWindow.style.backgroundColor = 'rgba(0,0,0,0)';
+									document.getElementById('visWindow').style.background = "rgba(0,0,0,0)";
+								}
+							lastVisWindowParentId = id;
+							lastVisWindow = visWindow;
+						};
+					})();
+				}
+
+			updateList();
+
+			var projects = [$('#projects-1'),$("#visualizer"),$('#virt-arena'),$('#photo-uploader'),$('#projects-2'),$("#warring-states"),$('#coh2-guide')];
+
+			$(".visualizer-link").click(function() {
+			    var eleContent = $("#visualizer");
+			    var eleContentTop = $("#visualizer-top");
+		    	var eleProjectsDiv = $('#projects-1');
+
+			    if(eleContent.hasClass("nodisplay")){
+			    	eleContent.removeClass("nodisplay");
+			    	eleProjectsDiv.removeClass("nodisplay");
+			    	for(var i in projects){
+			    		if(projects[i][0] != eleContent[0] && projects[i][0] != eleProjectsDiv[0]){
+			    			projects[i].addClass("nodisplay");
+			    		}
+			    	}
+			    	$("html, body").animate({ scrollTop: eleContentTop.offset().top-59 }, 400);
+			    } else {
+			    	eleProjectsDiv.addClass("nodisplay");
+			    	eleContent.addClass("nodisplay");
+			    }
+			});
+
+			$(".photo-uploader-link").click(function() {
+		    	var eleContent = $("#photo-uploader");
+		    	var eleContentTop = $("#photo-uploader-top");
+		    	var eleProjectsDiv = $('#projects-1');
+
+			    if(eleContent.hasClass("nodisplay")){
+			    	eleContent.removeClass("nodisplay");
+			    	eleProjectsDiv.removeClass("nodisplay");
+			    	for(var i in projects){
+			    		if(projects[i][0] != eleContent[0] && projects[i][0] != eleProjectsDiv[0]){
+			    			projects[i].addClass("nodisplay");
+			    		}
+			    	}
+			    	$("html, body").animate({ scrollTop: eleContentTop.offset().top-59 }, 400);
+			    } else {
+			    	eleProjectsDiv.addClass("nodisplay");
+			    	eleContent.addClass("nodisplay");
+			    }
+			});
+
+			$(".virt-arena-link").click(function() {
+				var eleContent = $("#virt-arena");
+				var eleContentTop = $("#virt-arena-top");
+		    	var eleProjectsDiv = $('#projects-1');
+
+			    if(eleContent.hasClass("nodisplay")){
+			    	eleContent.removeClass("nodisplay");
+			    	eleProjectsDiv.removeClass("nodisplay");
+			    	for(var i in projects){
+			    		if(projects[i][0] != eleContent[0] && projects[i][0] != eleProjectsDiv[0]){
+			    			projects[i].addClass("nodisplay");
+			    		}
+			    	}
+			    	$("html, body").animate({ scrollTop: eleContentTop.offset().top-59 }, 400);
+			    } else {
+			    	eleProjectsDiv.addClass("nodisplay");
+			    	eleContent.addClass("nodisplay");
+			    }
+			});
+
+			$(".warring-states-link").click(function() {
+		    	var eleContent = $("#warring-states");
+		    	var eleContentTop = $("#projects-1");
+		    	var eleProjectsDiv = $('#projects-2');
+
+			    if(eleContent.hasClass("nodisplay")){
+			    	eleContent.removeClass("nodisplay");
+			    	eleProjectsDiv.removeClass("nodisplay");
+			    	for(var i in projects){
+			    		if(projects[i][0] != eleContent[0] && projects[i][0] != eleProjectsDiv[0]){
+			    			projects[i].addClass("nodisplay");
+			    		}
+			    	}
+			    	$("html, body").animate({ scrollTop: eleContentTop.offset().top-59 }, 400);
+			    } else {
+			    	eleProjectsDiv.addClass("nodisplay");
+			    	eleContent.addClass("nodisplay");
+			    }
+			});
+
+			$(".coh2-guide-link").click(function() {
+		    	var eleContent = $("#coh2-guide");
+		    	var eleContentTop = $("#projects-1");
+		    	var eleProjectsDiv = $('#projects-2');
+
+			    if(eleContent.hasClass("nodisplay")){
+			    	eleContent.removeClass("nodisplay");
+			    	eleProjectsDiv.removeClass("nodisplay");
+			    	for(var i in projects){
+			    		if(projects[i][0] != eleContent[0] && projects[i][0] != eleProjectsDiv[0]){
+			    			projects[i].addClass("nodisplay");
+			    		}
+			    	}
+			    	$("html, body").animate({ scrollTop: eleContentTop.offset().top-59 }, 400);
+			    } else {
+			    	eleProjectsDiv.addClass("nodisplay");
+			    	eleContent.addClass("nodisplay");
+			    }
+			});
+		};
+	</script>
+</body>
+</html>
+

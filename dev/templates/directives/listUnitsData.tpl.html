@@ -1,0 +1,19 @@
+<div class="list-units-data">
+	<div class="units">
+		<div class="unit" ng-repeat='unit in units.infantry'>
+		    <list-unit unit='unit' add-unit='addUnit(unit)'></list-unit>
+		</div>
+	</div>
+
+	<div class="units">
+		<div class="unit" ng-repeat='unit in units.ranged'>
+		    <list-unit unit='unit' add-unit='addUnit(unit)'></list-unit>
+		</div>
+	</div>
+
+	<div class="units">
+		<div class="unit" ng-repeat='unit in units.cavalry'>
+		    <list-unit unit='unit' add-unit='addUnit(unit)'></list-unit>
+		</div>
+	</div>
+</div>

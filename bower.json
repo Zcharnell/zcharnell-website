@@ -1,0 +1,29 @@
+{
+  "name": "zcharnell-website",
+  "version": "0.0.0",
+  "authors": [
+    "zach char <zcharnell@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular": "~1.4.3",
+    "angular-ui-router": "~0.2.15",
+    "angular-resource": "~1.4.3",
+    "modernizr": "~2.8.2"
+  },
+  "devDependencies": {
+    "bourbon": "~4.2.1",
+    "neat": "~1.7.1",
+    "angular-mocks": "~1.2.20"
+  },
+  "resolutions": {
+    "angular": "~1.4.3"
+  }
+}
